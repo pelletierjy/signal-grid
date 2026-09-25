@@ -1,0 +1,36 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: color-scheme,
+        primary: mat.$azure-palette,
+        tertiary: mat.$azure-palette
+      ),
+      typography: (
+        plain-family: 'Inter, Helvetica Neue, Arial, sans-serif',
+        brand-family: 'Inter, Helvetica Neue, Arial, sans-serif'
+      ),
+      density: 0
+    )
+  );
+}
+
+html {
+  // Let Material's light-dark() colors follow the OS setting, like the site's own tokens do.
+  color-scheme: light dark;
+  // Keep Material surfaces on the site's tokens so the page and the grid use one palette.
+  --mat-sidenav-container-background-color: var(--color-surface);
+  --mat-sidenav-container-text-color: var(--color-text-muted);
+  --mat-sidenav-content-background-color: var(--color-surface);
+  --mat-sidenav-content-text-color: var(--color-text);
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}

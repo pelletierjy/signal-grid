@@ -1,0 +1,77 @@
+@import '../../../../assets/scss/variables';
+
+.div-table {
+  display: block;
+  width: auto;
+  border: 1px solid $transparent-dark-grey;
+  border-radius: $radius;
+  overflow: hidden;
+  background-color: $surface;
+  color: $text-color;
+  font-family: $font-family;
+}
+
+.grid-viewport {
+  height: $viewport-height;
+}
+
+.div-row {
+  position: relative;
+  display: grid;
+  width: auto;
+  &--alt {
+    background-color: $alternate-color;
+  }
+}
+
+.div-cell {
+  display: block;
+  width: auto;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid $transparent-dark-grey;
+  align-items: center;
+  transition: background-color 0.15s ease;
+  &-container {
+    padding: $cell-padding;
+  }
+  &.header {
+    color: $primary;
+    font-weight: 600;
+    background-color: $primary-light !important;
+  }
+}
+
+.expander {
+  cursor: pointer;
+  min-width: 1rem;
+  &.content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &.container {
+    display: block;
+    min-height: 1.5rem;
+  }
+}
+
+.value-indicator {
+  position: absolute;
+  color: transparent;
+  right: 0;
+  top: 0;
+  &.changed {
+    color: $changed-color;
+  }
+}
+
+.input-base {
+  border: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: none;
+  color: inherit;
+  font: inherit;
+}

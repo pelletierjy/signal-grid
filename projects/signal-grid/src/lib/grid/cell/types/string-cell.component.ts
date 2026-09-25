@@ -1,0 +1,22 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BaseCellComponent } from '../base-cell.component';
+
+@Component({
+  selector: 'lib-string-cell',
+  standalone: false,
+  template: `
+    @if (isEditable()) {
+    <input
+      class="input-base"
+      type="text"
+      matInput
+      [value]="$any(value() ?? '')"
+      (input)="setValue($any($event.target).value)" />
+    } @else {
+    <div class="input-base">{{ value() }}</div>
+    }
+  `,
+  styleUrls: ['../../grid/grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class StringCellComponent extends BaseCellComponent {}

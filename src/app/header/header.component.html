@@ -1,0 +1,42 @@
+<!-- note the template variable -->
+<header>
+  <a routerLink="/home" title="home" class="home-link"> </a>
+  <nav class="nav hidden-small">
+    <a
+      class="menu-link"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      mat-button
+      >Home</a
+    >
+    <a class="menu-link" routerLink="/demo" routerLinkActive="active" mat-button>Demos</a>
+    <a class="menu-link" routerLink="/docs" routerLinkActive="active" mat-button>Docs</a>
+    <button
+      mat-icon-button
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle dark theme"
+      (click)="theme.toggle()">
+      <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </nav>
+  <div class="nav show-on-small">
+    <button
+      mat-icon-button
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle dark theme"
+      (click)="theme.toggle()">
+      <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <a class="menu-link" routerLink="/" mat-menu-item>Home</a>
+      <a class="menu-link" routerLink="/demo" mat-menu-item>Demos</a>
+      <a class="menu-link" routerLink="/docs" mat-menu-item>Docs</a>
+    </mat-menu>
+  </div>
+</header>

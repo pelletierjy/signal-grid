@@ -1,0 +1,46 @@
+@import 'tokens';
+
+// Semantic color aliases (see _tokens.scss for the underlying CSS custom properties).
+$primary: var(--color-primary);
+$primary-dark: var(--color-primary-dark);
+$primary-light: var(--color-primary-light);
+$accent: var(--color-accent);
+$accent-dark: var(--color-accent-dark);
+$surface-alt: var(--color-surface-alt);
+$border-color: var(--color-border);
+$border-color-strong: var(--color-border-strong);
+$font-color: var(--color-text);
+$font-color-light: var(--color-text-muted);
+$on-primary: var(--color-on-primary);
+$overlay-dark: var(--color-overlay-dark);
+$overlay-light: var(--color-overlay-light);
+
+// font
+$font-family: var(--font-family);
+$font-family-medium: var(--font-family);
+
+// shape & elevation
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-lg: var(--radius-lg);
+$shadow-sm: var(--shadow-sm);
+$shadow-md: var(--shadow-md);
+$shadow-lg: var(--shadow-lg);
+
+// accents
+$layout-border: 1px solid $border-color;
+
+/*
+  breakpoints:
+  small: <720px (45rem)
+  medium: 720px - 1279px
+  large: 1280px (80rem)
+
+  minimum supported size: 375px (23.4375rem)
+*/
+
+$screen-small: 23.4375rem; /* 375px */
+$screen-small-max: 44.9375rem; /* 719px */
+$screen-medium: 45rem; /* 720px */
+$screen-medium-max: 79.9375rem; /* 1279px */
+$screen-large: 80rem; /* 1280px */

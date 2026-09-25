@@ -1,0 +1,9 @@
+<div [ngClass]="reverse ? 'duo-container reverse' : 'duo-container'">
+  <div class="duo-image hide-on-small" [ngStyle]="style?.image"></div>
+  <div class="duo-content-wrapper" [ngStyle]="style?.content">
+    <div class="duo-image show-on-small" [ngStyle]="style?.image"></div>
+    <div class="duo-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+@import 'variables';
+
+/*
+  breakpoints:
+  small: <720px (45rem)
+  medium: 720px - 1279px
+  large: 1280px (80rem)
+
+  minimum supported size: 375px (23.4375rem)
+*/
+.layout {
+  display: grid;
+  grid-row-gap: 0;
+  grid-template-columns: auto;
+  grid-template-rows: 4rem auto;
+  height: 100vh;
+  background-color: var(--color-surface);
+
+  main {
+    height: calc(100vh - 4rem);
+    overflow: hidden;
+
+    .scrollable {
+      overflow: auto;
+      height: calc(100vh - 4rem);
+      margin: 0;
+    }
+
+    .page {
+      margin: 0 auto;
+      max-width: 75rem;
+      padding: 2rem 0;
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  footer {
+    align-items: center;
+    background-color: $surface-alt;
+    border-top: $layout-border;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 0.5rem;
+
+    > div {
+      margin: 0.75rem 0;
+    }
+
+    .licensing {
+      text-align: center;
+
+      p {
+        color: $font-color-light;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    @media screen and (min-width: $screen-medium) {
+      padding: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,403 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<symbol id="user-icon" viewBox="0 0 25 25">
+		<title>User Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M5.2,21.4
+				c0.4-2.4,2-4.5,4.2-5.5"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M15.6,15.9
+				c0.8,0.4,1.5,0.9,2.1,1.5c1.1,1.1,1.8,2.4,2.1,4"/>
+			
+				<circle fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			
+				<ellipse fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="11.8" rx="4.7" ry="5.4"/>
+		</g>
+	</symbol>
+	<symbol id="odometer-icon" viewBox="0 0 25 25">
+		<title>Odometer Icon</title>
+		<g>
+			<circle fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<circle fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="12.5" r="2"/>
+			<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="11.1" y1="11.1" x2="5.8" y2="5.8"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M8.4,5.5
+				c1.2-0.7,2.6-1.1,4.1-1.1c4.5,0,8.1,3.6,8.1,8.1"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M5.5,8.4
+				C4.8,9.6,4.4,11,4.4,12.5"/>
+		</g>
+	</symbol>
+	<symbol id="lock-icon" viewBox="0 0 25 25">
+		<title>Lock Icon</title>
+		<g>
+			<path fill="none" stroke-width="2" stroke-miterlimit="10" d="M328,528h-20c-2.2,0-4-1.8-4-4v-13c0-2.2,1.8-4,4-4
+				h20c2.2,0,4,1.8,4,4v13C332,526.2,330.2,528,328,528z"/>
+			<path fill="none" stroke-width="2" stroke-miterlimit="10" d="M327,507h-18v-7c0-5,4-9,9-9l0,0c5,0,9,4,9,9V507z"
+				/>
+		</g>
+		<g>
+			<path fill="none" stroke-width="2" stroke-miterlimit="10" d="M18.9,24H6.5C5.1,24,4,22.9,4,21.5v-8.1
+				c0-1.4,1.1-2.5,2.5-2.5h12.4c1.4,0,2.5,1.1,2.5,2.5v8.1C21.4,22.9,20.3,24,18.9,24z"/>
+			<path fill="none" stroke-width="2" stroke-miterlimit="10" d="M18.3,10.9H7.1V6.6C7.1,3.5,9.6,1,12.7,1l0,0
+				c3.1,0,5.6,2.5,5.6,5.6V10.9z"/>
+		</g>
+	</symbol>
+	<symbol id="gear-icon" viewBox="0 0 25 25">
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M4.5,10.2
+				C4.7,9.6,4.9,9,5.2,8.5L3.7,6.6C3.3,6.1,3.4,5.4,3.8,4.9l1.1-1.1c0.5-0.5,1.2-0.5,1.7-0.1l1.8,1.5C9,4.9,9.6,4.7,10.2,4.5l0.2-2.4
+				C10.5,1.5,11.1,1,11.7,1h1.5c0.7,0,1.2,0.5,1.3,1.1l0.2,2.4c0.6,0.2,1.2,0.4,1.8,0.7l1.8-1.5c0.5-0.4,1.2-0.4,1.7,0.1l1.1,1.1
+				c0.5,0.5,0.5,1.2,0.1,1.7l-1.5,1.8c0.3,0.6,0.6,1.1,0.7,1.8l2.4,0.2c0.7,0.1,1.1,0.6,1.1,1.3v1.5c0,0.7-0.5,1.2-1.1,1.3l-2.4,0.2
+				c-0.2,0.6-0.4,1.2-0.7,1.8l1.5,1.8c0.4,0.5,0.4,1.2-0.1,1.7l-1.1,1.1c-0.5,0.5-1.2,0.5-1.7,0.1l-1.8-1.5c-0.6,0.3-1.1,0.6-1.8,0.7
+				l-0.2,2.4c-0.1,0.7-0.6,1.1-1.3,1.1h-1.5c-0.7,0-1.2-0.5-1.3-1.1l-0.2-2.4c-0.6-0.2-1.2-0.4-1.8-0.7l-1.8,1.5
+				c-0.5,0.4-1.2,0.4-1.7-0.1l-1.1-1.1c-0.5-0.5-0.5-1.2-0.1-1.7l1.5-1.8c-0.3-0.6-0.6-1.1-0.7-1.8l-2.4-0.2C1.5,14.5,1,13.9,1,13.3
+				v-1.5c0-0.7,0.5-1.2,1.1-1.3L4.5,10.2z"/>
+			
+				<circle fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="12.5" r="3.8"/>
+		</g>
+	</symbol>
+	<symbol id="close-icon" viewBox="0 0 25 25">
+		<title>Close Icon</title>
+		<g>
+			<circle fill="none"  stroke-width="1.5" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="8.2" y1="16.8" x2="16.8" y2="8.2"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="16.8" y1="16.8" x2="8.2" y2="8.2"/>
+		</g>
+	</symbol>
+	<symbol id="close-icon-no-circle" viewBox="0 0 25 25">
+		<title>Close Icon</title>
+		<g>
+			<line fill="none" stroke-miterlimit="10" x1="0.67" y1="24.33" x2="24.33" y2="0.67"/>
+			<line fill="none" stroke-miterlimit="10" x1="24.33" y1="24.33" x2="0.67" y2="0.67"/>
+		</g>
+	</symbol>
+	<symbol id="plus-icon" viewBox="0 0 25 25">
+		<title>Plus Icon</title>
+		<g>
+			<circle fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="12.5" y1="6.4" x2="12.5" y2="18.6"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="18.6" y1="12.5" x2="6.4" y2="12.5"/>
+		</g>
+	</symbol>
+	<symbol id="plus-icon-no-circle" viewBox="0 0 25 25">
+		<title>Plus Icon</title>
+		<g>
+			<line fill="none" stroke-miterlimit="10" x1="12.5" y1="0" x2="12.5" y2="25"/>
+			<line fill="none" stroke-miterlimit="10" x1="25" y1="12.5" x2="0" y2="12.5"/>
+		</g>
+	</symbol>
+	<symbol id="minus-icon" viewBox="0 0 25 25">
+		<title>Minus Icon</title>
+		<g>
+			<circle fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="6.4" y1="12.5" x2="18.6" y2="12.5"/>
+		</g>
+	</symbol>
+	<symbol id="checkmark-circle-icon" viewBox="0 0 25 25">
+		<title>Checkmark Icon</title>
+		<g>
+			<circle fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<polyline fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" points="7.76,12.5 
+				11.15,15.88 17.91,9.12 	"/>
+		</g>
+	</symbol>
+	<symbol id="brush-icon" viewBox="0 0 25 25">
+		<title>Paintbrush Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M10.7,17.5l-3.2-3.2
+				L21.4,1.4c0.6-0.6,1.6-0.6,2.2,0l0,0c0.6,0.6,0.6,1.6,0,2.2L10.7,17.5z"/>
+			<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="11" y1="11.4" x2="13.4" y2="13.8"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M1.1,23.9
+				c1.6,0.3,4.7-0.4,5.9-1.6c1.2-1.2,1.2-3.1,0-4.3c-1.2-1.2-3.1-1.2-4.3,0C1.5,19.2,0.8,22.4,1.1,23.9z"/>
+		</g>
+	</symbol>
+	<symbol id="atom-icon" viewBox="0 0 25 25">
+		<title>Atom Icon</title>
+		<g>
+			<ellipse fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.6" cy="12.5" rx="3.8" ry="11.5"/>
+			<ellipse transform="matrix(0.5 -0.866 0.866 0.5 -4.5034 17.1999)" fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.6" cy="12.5" rx="3.8" ry="11.5"/>
+			<ellipse transform="matrix(0.866 -0.5 0.5 0.866 -4.556 7.9966)" fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.6" cy="12.5" rx="11.5" ry="3.8"/>
+		</g>
+	</symbol>
+	<symbol id="paper-icon" viewBox="0 0 25 25">
+		<title>Paper Icon</title>
+		<g>
+			<rect x="4.7" y="5.7" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" width="11.2" height="5"/>
+			<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="4.1" y1="13.8" x2="16.5" y2="13.8"/>
+			<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="4.1" y1="16.9" x2="16.5" y2="16.9"/>
+			<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="4.1" y1="20" x2="10.3" y2="20"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M19.6,7.6h2.5
+			c1,0,1.9,0.8,1.9,1.9V21c0,1.2-1,2.2-2.2,2.2c-1.2,0-2.2-1-2.2-2.2V3.9c0-1-0.8-1.9-1.9-1.9H2.9C1.8,2,1,2.8,1,3.9v17.4
+			c0,1,0.8,1.9,1.9,1.9h18.6"/>
+		</g>
+	</symbol>
+	<symbol id="page-icon" viewBox="0 0 25 25">
+		<title>Page Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M19.23,24H4.77
+				c-1.45,0-2.63-1.18-2.63-2.63V3.63C2.14,2.18,3.32,1,4.77,1h8.03c0.33,0,0.65,0.12,0.89,0.35l7.74,7.15
+				c0.27,0.25,0.42,0.6,0.42,0.97v11.91C21.86,22.82,20.68,24,19.23,24z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M13.31,1v5.26
+				c0,1.45,1.18,2.63,2.63,2.63h5.59"/>
+		</g>
+	</symbol>
+
+	<symbol id="puzzle-icon" viewBox="0 0 25 25">
+		<title>Puzzle Piece Icon</title>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M9.1,19.9l4.1,4.1
+		l3.4-3.4c-0.5-0.2-1-0.5-1.4-0.9c-1.4-1.4-1.5-3.5-0.2-4.7s3.4-1.1,4.7,0.2c0.4,0.4,0.7,0.9,0.9,1.4l3.4-3.4l-4.1-4.1
+		c0.5-0.2,1-0.5,1.4-0.9c1.4-1.4,1.5-3.5,0.2-4.7c-1.2-1.2-3.4-1.1-4.7,0.2c-0.4,0.4-0.7,0.9-0.9,1.4L11.8,1L8.4,4.4
+		c0.5,0.2,1,0.5,1.4,0.9c1.4,1.4,1.5,3.5,0.2,4.7s-3.4,1.1-4.7-0.2C4.9,9.4,4.6,8.9,4.4,8.4L1,11.8l4.1,4.1c-0.5,0.2-1,0.5-1.4,0.9
+		c-1.4,1.4-1.5,3.5-0.2,4.7c1.2,1.2,3.4,1.1,4.7-0.2C8.6,20.9,8.9,20.4,9.1,19.9z"/>
+	</symbol>
+	<symbol id="graph-icon" viewBox="0 0 25 25">
+		<title>Graph Icon</title>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M15.5,20h-6V4
+		c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V20z"/>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M21.5,20h-6V8
+			c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V20z"/>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M9.5,20h-6v-7
+			c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V20z"/>
+		<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="1" y1="20" x2="24" y2="20"/>
+	</symbol>
+	<symbol id="home-icon" viewBox="0 0 25 25">
+		<title>Home Icon</title>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M11.1,1.5L2,8.9
+		C1.8,9,1.8,9.2,1.8,9.4v13.9c0,0.4,0.3,0.7,0.7,0.7h6.1c0.4,0,0.7-0.3,0.7-0.7v-8.8c0-0.4,0.3-0.7,0.7-0.7h5.4
+		c0.4,0,0.7,0.3,0.7,0.7v8.8c0,0.4,0.3,0.7,0.7,0.7h6.1c0.4,0,0.7-0.3,0.7-0.7V9.4c0-0.2-0.1-0.4-0.2-0.5l-9.1-7.4
+		C13.2,0.8,12,0.8,11.1,1.5z"/>
+	</symbol>
+	<symbol id="filter-icon" viewBox="0 0 25 25">
+		<title>Filter Icon</title>
+		<g>
+			<ellipse fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.8" cy="3" rx="8.8" ry="2"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M4,3
+				c0,0-0.4,3.9,1.7,7.4c2.1,3.5,5.1,4.7,5.1,4.7V24l4.1-2.7v-6.1c0,0,3-1.2,5.1-4.7C21.9,6.9,21.6,3,21.6,3"/>
+		</g>
+	</symbol>
+	<symbol id="right-arrow-icon" viewBox="0 0 25 25">
+		<title>Arrow Icon</title>
+		<polyline fill="none" stroke-width="3.5" stroke-miterlimit="10" points="7.162,1.332 18.378,12.547 7.186,23.668"/>
+	</symbol>
+	<symbol id="copy-icon" viewBox="0 0 25 25">
+		<title>Copy Icon</title>
+		<g>
+			<g>
+				<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M15.8,24.4h-11
+					c-1.5,0-2.8-1.2-2.8-2.8V8.6C2,7,3.2,5.8,4.8,5.8h6.6c0.2,0,0.4,0.1,0.5,0.2l6.5,6.5c0.1,0.1,0.2,0.3,0.2,0.5v8.7
+					C18.5,23.1,17.3,24.4,15.8,24.4z"/>
+				<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M11.6,6.2v3.8
+					c0,1.5,1.2,2.8,2.8,2.8h3.8"/>
+			</g>
+			<g>
+				<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M7.5,5.8V3.8
+					C7.5,2.2,8.7,1,10.2,1h6.6c0.2,0,0.4,0.1,0.5,0.2l6.5,6.5C23.9,7.8,24,8,24,8.2v8.7c0,1.5-1.2,2.8-2.8,2.8h-2.8"/>
+				<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M17.1,1.3v3.8
+					c0,1.5,1.2,2.8,2.8,2.8h3.8"/>
+			</g>
+		</g>
+	</symbol>
+	<symbol id="stamp-icon" viewBox="0 0 25 25">
+		<title>Stamp Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M19.64,15.46h-2.5c-2.74-0.18-4.15-1.44-4.55-2.63c-0.4-1.19,0.08-2.48,1.24-3.37c1.44-1.1,2.04-3.54,1.36-5.56
+				c-0.68-2-2.39-3.15-4.71-3.15c-2.32,0-4.04,1.15-4.71,3.15C5.09,5.92,5.69,8.36,7.14,9.46c1.17,0.89,1.64,2.18,1.24,3.37
+				c-0.4,1.19-1.81,2.45-4.55,2.63h-2.5c-0.32,0-0.58,0.26-0.58,0.58v4.58c0,0.32,0.26,0.58,0.58,0.58h18.31
+				c0.32,0,0.58-0.26,0.58-0.58v-4.58C20.22,15.72,19.96,15.46,19.64,15.46z M1.91,15.46h17.14"/>
+
+			<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="0.77" y1="24.24" x2="20.25" y2="24.24"/>
+		</g>
+	</symbol>
+	<symbol id="trash-icon" viewBox="0 0 25 25">
+		<title>Trash Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M20.7,4.3V21
+				c0,1.5-1.2,2.7-2.7,2.7H6c-1.5,0-2.7-1.2-2.7-2.7V4.3"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="0" y1="4.3" x2="24" y2="4.3"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M16,4.3H8V3
+				c0-1.1,0.9-2,2-2h4c1.1,0,2,0.9,2,2V4.3z"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="12" y1="7.7" x2="12" y2="20.3"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="16" y1="7.7" x2="16" y2="20.3"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="8" y1="7.7" x2="8" y2="20.3"/>
+		</g>
+	</symbol>
+	<symbol id="pencil-icon" viewBox="0 0 25 25">
+		<title>Pencil Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M8.6,21.8L1,24l2.2-7.6
+				L17.8,1.8c1-1,2.7-1,3.8,0l1.6,1.6c1,1,1,2.7,0,3.8L8.6,21.8z"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="21" y1="9.4" x2="15.6" y2="4"/>
+		</g>
+	</symbol>
+	<symbol id="insert-icon" viewBox="0 0 25 25">
+		<title>Insert Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M13.9,1H3.9
+				C2.3,1,1,2.3,1,3.9v17.2C1,22.7,2.3,24,3.9,24h17.2c1.6,0,2.9-1.3,2.9-2.9V11.1"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="23.3" y1="1.7" x2="11.1" y2="13.9"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M10.3,6v7.9
+				c0,0.4,0.3,0.7,0.7,0.7H19"/>
+		</g>
+	</symbol>
+	<symbol id="undo-icon" viewBox="0 0 25 25">
+		<title>Undo Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M3,14c0,5.5,4.5,10,10,10s10-4.5,10-10s-4.5-10-10-10l2.4,4.8"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13" y1="3.9" x2="17.1" y2="1"/>
+		</g>
+	</symbol>
+	<symbol id="search-icon" viewBox="0 0 25 25">
+		<title>Search Icon</title>
+		<g>
+				<circle fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="11.1" cy="11.1" r="10.1"/>
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="24" y1="24" x2="18.2" y2="18.2"/>
+		</g>
+	</symbol>
+	<symbol id="sps-icon" viewBox="0 0 25 25">
+		<title>SPS Icon</title>
+		<g id="Layer_1">
+			<path fill="none" stroke-width="1.5" stroke-miterlimit="10" d="M1.2,15.5c0,0,0.97,1.78,2.9,1.78
+				s3.11-1.1,3.11-2.33s-0.94-2.26-3-2.83c-2.07-0.57-2.87-1.37-2.78-2.47c0.09-1.1,1.1-2.08,2.78-1.99s2.76,1.09,2.76,1.09"/>
+			<path fill="none" stroke-width="1.5" stroke-miterlimit="10" d="M17.83,15.5c0,0,0.97,1.78,2.9,1.78
+				s3.11-1.1,3.11-2.33s-0.94-2.26-3-2.83c-2.07-0.57-2.87-1.37-2.78-2.47c0.09-1.1,1.1-2.08,2.78-1.99c1.68,0.09,2.76,1.09,2.76,1.09
+				"/>
+			<path fill="none" stroke-width="1.5" stroke-miterlimit="10" d="M9.48,18.12V7.9c0,0,3.64,0,3.91,0
+				s2.42-0.15,2.42,2.33c0,2.38-1.48,2.67-2.33,2.67c-0.85,0-4,0.02-4,0.02"/>
+		</g>
+	</symbol>
+	<symbol id="bug-icon" viewBox="0 0 25 25">
+		<title>Bug Icon</title>
+			<g>
+				<ellipse fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" cx="12.5" cy="13.85" rx="7.44" ry="9.47"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="1" y1="13.85" x2="5.06" y2="13.85"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.35" y1="7.26" x2="5.68" y2="9.58"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="22.65" y1="7.26" x2="19.32" y2="9.58"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.35" y1="20.45" x2="5.68" y2="18.12"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="22.65" y1="20.45" x2="19.32" y2="18.12"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="19.94" y1="13.85" x2="24" y2="13.85"/>
+				<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M3.71,1c2.88,0,5.33,1.82,6.09,4.06"/>
+				<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M21.29,1c-2.88,0-5.33,1.82-6.09,4.06"/>
+				<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M5.74,9.79c4.51,3.61,9.02,3.61,13.53,0"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="12.5" y1="12.5" x2="12.5" y2="23.32"/>
+		</g>
+	</symbol>
+	<symbol id="money-icon" viewBox="0 0 25 25">
+		<title>Money Icon</title>
+			<g>
+				<path fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M15.27,16.82c0-0.66-0.2-1.18-0.59-1.57c-0.39-0.39-1.06-0.75-2-1.07s-1.75-0.65-2.43-0.98s-1.26-0.7-1.75-1.12
+					c-0.49-0.42-0.87-0.91-1.14-1.48C7.1,10.04,6.96,9.36,6.96,8.57c0-1.35,0.47-2.46,1.4-3.33c0.93-0.86,2.17-1.37,3.71-1.51V1.17
+					h2.07v2.6c1.52,0.2,2.72,0.79,3.58,1.77S19,7.79,19,9.36h-3.73c0-0.96-0.21-1.68-0.64-2.15c-0.43-0.48-1-0.71-1.71-0.71
+					c-0.71,0-1.25,0.19-1.64,0.56c-0.39,0.37-0.58,0.89-0.58,1.54c0,0.61,0.19,1.1,0.57,1.46s1.08,0.74,2.11,1.13s1.88,0.75,2.54,1.09
+					c0.66,0.34,1.22,0.72,1.68,1.15c0.46,0.43,0.81,0.92,1.05,1.46S19,16.07,19,16.8c0,1.36-0.46,2.46-1.37,3.31
+					c-0.91,0.85-2.17,1.35-3.77,1.5V24H11.8v-2.38c-1.77-0.18-3.13-0.76-4.1-1.75c-0.97-0.99-1.45-2.3-1.45-3.94h3.73
+					c0,0.95,0.24,1.68,0.73,2.19s1.19,0.76,2.1,0.76c0.76,0,1.36-0.19,1.8-0.56S15.27,17.45,15.27,16.82z"/>
+			</g>
+	</symbol>
+	<symbol id="calendar-icon" viewBox="0 0 25 25">
+		<title>Calendar Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M19.34,24.16H5
+				c-2.21,0-4-1.79-4-4V7.13c0-2.21,1.79-4,4-4h14.34c2.21,0,4,1.79,4,4v13.03C23.34,22.37,21.55,24.16,19.34,24.16z"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="1.66" y1="8.39" x2="24" y2="8.39"/>
+			
+				<line fill="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="6.26" y1="0.5" x2="6.26" y2="5.1"/>
+			
+				<line fill="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="18.09" y1="0.5" x2="18.09" y2="5.1"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M6.57,14.96H4.63
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C7.57,14.51,7.12,14.96,6.57,14.96z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M13.14,14.96H11.2
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C14.14,14.51,13.7,14.96,13.14,14.96z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M19.71,14.96h-1.94
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C20.71,14.51,20.27,14.96,19.71,14.96z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M6.57,21.53H4.63
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C7.57,21.08,7.12,21.53,6.57,21.53z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M13.14,21.53H11.2
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C14.14,21.08,13.7,21.53,13.14,21.53z"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M19.71,21.53h-1.94
+				c-0.55,0-1-0.45-1-1v-1.94c0-0.55,0.45-1,1-1h1.94c0.55,0,1,0.45,1,1v1.94C20.71,21.08,20.27,21.53,19.71,21.53z"/>
+		</g>
+	</symbol>
+	<symbol id="beaker-icon" viewBox="0 0 25 25">
+		<title>Beaker Icon</title>
+		<g>
+		<polygon fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" points="4.7,21.3 
+			10.3,14.3 13.7,14.3 19.3,21.3"/>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M9.3,3.7
+			c-0.7,0-1.4-0.6-1.4-1.4S8.5,1,9.3,1h5.4c0.7,0,1.4,0.6,1.4,1.4s-0.6,1.4-1.4,1.4v5.6c0,1.2,0.4,2.4,1.2,3.4l5.5,7
+			c1.4,1.8,0.1,4.4-2.1,4.4H4.7c-2.3,0-3.5-2.6-2.1-4.4l5.5-7c0.8-1,1.2-2.1,1.2-3.4V3.7z"/>
+		</g>
+	</symbol>
+	<symbol id="lightbulb-icon" viewBox="0 0 25 25">
+		<title>Lightbulb Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M15.206,16.769v4.526
+				c0,1.495-1.211,2.706-2.706,2.706s-2.706-1.211-2.706-2.706v-4.526c-3.152-1.109-5.412-4.113-5.412-7.651
+				C4.382,4.633,8.015,1,12.5,1s8.118,3.633,8.118,8.118C20.618,12.656,18.358,15.659,15.206,16.769z"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="12.5" y1="17.912" x2="12.5" y2="13.176"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="9.794" y1="18.588" x2="14.529" y2="18.588"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="9.794" y1="21.294" x2="14.529" y2="21.294"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="10.471" y1="11.147" x2="12.5" y2="13.176"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="14.529" y1="11.147" x2="12.5" y2="13.176"/>
+		</g>
+	</symbol>
+	<symbol id="warning-icon" viewBox="0 0 25 25">
+		<title>Warning Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M1.183,20.013
+				L11.329,2.439c0.52-0.901,1.821-0.901,2.341,0l10.146,17.574c0.52,0.901-0.13,2.028-1.171,2.028H2.354
+				C1.313,22.041,0.663,20.914,1.183,20.013z"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="12.5" y1="7.846" x2="12.5" y2="16.633"/>
+				<circle stroke="none" cx="12.5" cy="18.661" r="1.014"/>
+		</g>
+	</symbol>
+	<symbol id="error-icon" viewBox="0 0 25 25">
+		<title>Error Icon</title>
+		<g>
+			<circle fill="none" stroke-width="1.5" stroke-miterlimit="10" cx="12.5" cy="12.5" r="11.5"/>
+			<line fill="none" stroke-width="1.5" stroke-miterlimit="10" x1="4.382" y1="20.618" x2="20.618" y2="4.382"/>
+		</g>
+	</symbol>		
+	<symbol id="wrench-icon" viewBox="0 0 25 25">
+		<title>Wrench Icon</title>
+		<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M9.347,11.831
+	c0.849-0.849,1.321-2.035,1.173-3.226c-0.249-1.998,0.393-4.086,1.931-5.619c2.049-2.056,5.093-2.516,7.589-1.373L15.992,5.66
+	c-0.906,0.906-1.04,2.398-0.182,3.35c0.915,1.016,2.481,1.047,3.436,0.092l4.143-4.143c1.143,2.496,0.683,5.54-1.373,7.589
+	c-1.534,1.539-3.621,2.181-5.619,1.931c-1.192-0.148-2.377,0.323-3.226,1.173l-7.551,7.555c-1.057,1.057-2.77,1.057-3.826,0
+	c-1.057-1.057-1.057-2.77,0-3.826L9.347,11.831z"/>
+	</symbol>
+	<symbol id="export-icon" viewBox="0 0 25 25">
+		<title>Export Icon</title>
+		<g>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M13.176,2.353H3.706
+				C2.211,2.353,1,3.564,1,5.059v16.235C1,22.789,2.211,24,3.706,24h16.235c1.494,0,2.706-1.211,2.706-2.706v-9.471"/>
+			
+				<line fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" x1="11.824" y1="13.176" x2="23.324" y2="1.676"/>
+			<path fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10" d="M24,9.118V1.676
+				C24,1.303,23.697,1,23.324,1h-7.441"/>
+		</g>
+	</symbol>
+</svg>

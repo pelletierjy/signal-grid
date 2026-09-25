@@ -1,0 +1,85 @@
+@import '../scss/common.scss';
+
+:host {
+  display: block;
+  max-width: 58rem;
+  padding-bottom: 3rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  margin: 2.25rem 0 0.5rem;
+}
+
+h3 {
+  margin: 1.5rem 0 0.25rem;
+}
+
+p,
+li {
+  line-height: 1.6;
+  color: $font-color;
+}
+
+.lead {
+  color: $font-color-light;
+  font-size: 1.1rem;
+}
+
+code {
+  padding: 0.1rem 0.35rem;
+  background: $surface-alt;
+  border-radius: $radius-sm;
+  font-size: 0.9em;
+}
+
+table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    font-weight: 600;
+    border-bottom: 2px solid $border-color;
+  }
+
+  td:first-child > code {
+    white-space: nowrap;
+  }
+}
+
+.note {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: $primary-light;
+  border-left: 3px solid $primary;
+  border-radius: $radius-sm;
+}
+
+.demo {
+  margin: 1rem 0;
+  // The docs examples use a short scrolling area. This is the grid's own styling API at work.
+  --signal-grid-viewport-height: 14rem;
+
+  // The grid prints its own title; the page already has one.
+  ::ng-deep signal-grid h1 {
+    display: none;
+  }
+}
+
+.output {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: $font-color-light;
+}

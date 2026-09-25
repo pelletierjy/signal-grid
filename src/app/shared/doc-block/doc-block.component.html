@@ -1,0 +1,13 @@
+<ng-container *ngIf="docblock">
+  <table>
+    <tr *ngIf="docblock.headers.length > 0">
+      <th class="title-header" *ngFor="let header of docblock.headers">
+        {{ header }}
+      </th>
+    </tr>
+    <tr *ngFor="let item of docblock.items">
+      <th><div [innerHTML]="item.title"></div></th>
+      <td>{{ item.description }}</td>
+    </tr>
+  </table>
+</ng-container>

@@ -1,0 +1,47 @@
+@import '../../scss/common.scss';
+
+table {
+  border-collapse: collapse;
+  border-left: 3px solid $primary;
+  margin: 1.5rem 0;
+  width: 100%;
+
+  tr {
+    &:not(:last-of-type) {
+      td,
+      th {
+        border-bottom: 1px solid $border-color;
+
+        &.title-header {
+          border-bottom: 2px solid $border-color;
+        }
+      }
+    }
+  }
+
+  th {
+    font-weight: 600;
+    width: 10rem;
+  }
+
+  td {
+    border-left: 1px solid $border-color;
+    width: 12.5rem;
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  @media screen and (min-width: $screen-medium) {
+    th {
+      width: 12.5rem;
+    }
+
+    td {
+      width: 25rem;
+    }
+  }
+}

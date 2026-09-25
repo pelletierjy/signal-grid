@@ -1,0 +1,30 @@
+@if (includeRowExpander()) {
+<div
+  (click)="isHeaderRow() ? null : toggleRowExpander()"
+  [ngClass]="{
+    'div-cell-container': !isHeaderRow(),
+    'div-cell': true,
+    header: isHeaderRow(),
+    expander: isHeaderRow()
+  }">
+  +
+</div>
+} @for (column of columns(); track $index) { @if (isHeaderRow()) {
+<div class="div-cell-container div-cell header">
+  <div>{{ column.columnHeaderText }}</div>
+</div>
+} @else { @if (formGroup().get(index().toString())) {
+<div
+  lib-cell
+  class="div-cell"
+  [column]="column"
+  [columns]="columns()"
+  [formGroup]="formGroup()"
+  [index]="index()"></div>
+}
+<div
+  [ngClass]="{ 'value-indicator': true, changed: !formControl()?.pristine }"
+  title="row has pending changes">
+  *
+</div>
+} }

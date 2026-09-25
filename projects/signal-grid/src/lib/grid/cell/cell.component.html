@@ -1,0 +1,12 @@
+<div [class]="'div-cell-container ' + cssClass()">
+  <ng-container
+    *ngComponentOutlet="
+      resolved().component;
+      inputs: {
+        columns: columns(),
+        column: resolved().column,
+        formGroup: formGroup(),
+        index: index()
+      }
+    " />
+</div>

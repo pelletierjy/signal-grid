@@ -1,0 +1,50 @@
+import * as _ from 'lodash';
+import { Utility } from '../shared/utility';
+import { CallbackParameter, ColumnConfiguration } from '../models/models';
+import { CellProps, CellTypeName } from '../registry/cell-type-config';
+
+export class ColumnConfigurationBuilder {
+  private _type: CellTypeName | ((callbackParameter: CallbackParameter) => CellTypeName);
+  private _props: CellProps | ((callbackParameter: CallbackParameter) => CellProps);
+
+  constructor() {}
+  private _isEditable: (callbackParameter: CallbackParameter) => boolean = () => false;
+  private _fieldName: string; // The fieldName can't be dynamin anymore since it is bound to a form control.
+
+  withType(
+    type: CellTypeName | ((callbackParameter: CallbackParameter) => CellTypeName)
+  ): ColumnConfigurationBuilder {
+    this._type = type;
+    return this;
+  }
+
+  withProps(
+    props: CellProps | ((callbackParameter: CallbackParameter) => CellProps)
+  ): ColumnConfigurationBuilder {
+    this._props = props;
+    return this;
+  }
+
+  withField(fieldName: string): ColumnConfigurationBuilder {
+    this._fieldName = fieldName;
+    return this;
+  }
+
+  editable(
+    callback: (callbackParameter: CallbackParameter) => boolean = null
+  ): ColumnConfigurationBuilder {
+    if (!Utility.isFunction(callback)) {
+      this._isEditable = () => true;
+      return this;
+    }
+    this._isEditable = callback;
+    return this;
+  }
+
+  build(text: string = ''): ColumnConfiguration {
+    const column = new ColumnConfiguration(text, this._fieldName, this._type);
+    column.isEditable = this._isEditable;
+    column.props = this._props;
+    return column;
+  }
+}

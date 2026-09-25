@@ -1,0 +1,31 @@
+// Styling API of the grid. Every look-and-feel value is a CSS custom property, so a client app can
+// restyle the grid from its own stylesheet (on :root, on a wrapper, or on the <signal-grid> element).
+// Resolution order for each value: --signal-grid-* (grid specific) -> the host's generic token
+// (--color-*, --radius-md, --font-family) -> the default below, so the grid also works standalone
+// (e.g. as a web component with no host theme).
+//
+//   --signal-grid-header-color     header text color
+//   --signal-grid-header-bg        header background
+//   --signal-grid-row-alt-bg       background of alternate rows (and the hatch of the default cell)
+//   --signal-grid-border-color     cell and table borders (and the hatch lines of the default cell)
+//   --signal-grid-radius           table corner radius
+//   --signal-grid-bg               table background
+//   --signal-grid-text-color       text color
+//   --signal-grid-font-family      font family
+//   --signal-grid-changed-color    pending-change indicator color
+//   --signal-grid-cell-padding     padding of the cell content
+//   --signal-grid-viewport-height  height of the scrolling area
+$primary: var(--signal-grid-header-color, var(--color-primary, #1e3a5f));
+$primary-light: var(--signal-grid-header-bg, var(--color-primary-light, #e8edf3));
+$alternate-color: var(--signal-grid-row-alt-bg, var(--color-surface-alt, #f6f7f9));
+$transparent-dark-grey: var(
+  --signal-grid-border-color,
+  var(--color-border-strong, rgba(15, 23, 42, 0.18))
+);
+$radius: var(--signal-grid-radius, var(--radius-md, 8px));
+$surface: var(--signal-grid-bg, var(--color-surface, transparent));
+$text-color: var(--signal-grid-text-color, var(--color-text, inherit));
+$font-family: var(--signal-grid-font-family, var(--font-family, inherit));
+$changed-color: var(--signal-grid-changed-color, #b45309);
+$cell-padding: var(--signal-grid-cell-padding, 0.35rem 0.5rem);
+$viewport-height: var(--signal-grid-viewport-height, 480px);

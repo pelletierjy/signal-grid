@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "signal-grid",
+  "projectType": "library",
+  "sourceRoot": "projects/signal-grid/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "tsConfig": "projects/signal-grid/tsconfig.lib.json",
+        "project": "projects/signal-grid/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/signal-grid/tsconfig.lib.prod.json"
+        }
+      },
+      "outputs": ["{workspaceRoot}/dist/signal-grid"]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+/*
+  Design tokens as CSS custom properties. These are the single source of
+  truth for color/typography/shape across the site AND the signal-grid
+  library (the library falls back to its own defaults via var(--x, fallback)
+  when these aren't present, e.g. when embedded standalone as a web component).
+
+  The palette is neutral slate with one restrained steel-blue accent. The dark theme follows the
+  operating system by default, and the header toggle sets html[data-theme] to force light or dark.
+*/
+@mixin dark-tokens {
+  --color-primary: #9db4d3;
+  --color-primary-dark: #7f9bc0;
+  --color-primary-light: #1e2837;
+  --color-accent: #8fa3bd;
+  --color-accent-dark: #fbbf24;
+
+  --color-surface: #0f141b;
+  --color-surface-alt: #151b24;
+  --color-border: #263041;
+  --color-border-strong: rgba(148, 163, 184, 0.28);
+  --color-text: #e5e9f0;
+  --color-text-muted: #98a2b3;
+  --color-on-primary: #0f141b;
+  --color-overlay-dark: rgba(0, 0, 0, 0.65);
+  --color-overlay-light: rgba(255, 255, 255, 0.08);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+:root {
+  // brand colors
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #14283f;
+  --color-primary-light: #e8edf3;
+  --color-accent: #5b6b7f;
+  --color-accent-dark: #b45309;
+
+  // surfaces & text
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f7f9;
+  --color-border: #dfe3e8;
+  --color-border-strong: rgba(15, 23, 42, 0.18);
+  --color-text: #111827;
+  --color-text-muted: #5b6573;
+  --color-on-primary: #ffffff;
+  --color-overlay-dark: rgba(15, 23, 42, 0.6);
+  --color-overlay-light: rgba(255, 255, 255, 0.18);
+
+  // signal-grid theme: how this site restyles the grid. The grid's styling API is documented in
+  // projects/signal-grid/assets/scss/_variables.scss. Another client can set the same properties.
+  --signal-grid-header-color: var(--color-primary);
+  --signal-grid-header-bg: var(--color-primary-light);
+  --signal-grid-row-alt-bg: var(--color-surface-alt);
+  --signal-grid-border-color: var(--color-border-strong);
+  --signal-grid-radius: var(--radius-md);
+  --signal-grid-changed-color: var(--color-accent-dark);
+
+  // typography
+  --font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  // shape & elevation
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-tokens;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include dark-tokens;
+}

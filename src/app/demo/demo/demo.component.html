@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <nav class="nav">
+      <a class="menu-link" routerLinkActive="active" mat-button routerLink="/demo/demo-grid"
+        >Grid</a
+      >
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="demo-content">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

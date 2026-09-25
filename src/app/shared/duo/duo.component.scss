@@ -1,0 +1,106 @@
+@import '../../scss/common';
+
+.duo-container {
+  @media screen and (max-width: $screen-small-max) {
+    height: 30rem;
+    margin: 0 0 4rem;
+
+    .duo-content-wrapper {
+      align-items: center;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+
+      .duo-image {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto;
+        height: 100%;
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      .duo-content {
+        padding: 1.5rem;
+      }
+
+      p,
+      ul {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-medium) {
+    align-items: center;
+    background-color: var(--color-surface);
+    display: flex;
+    height: 30rem;
+    justify-content: center;
+    margin: 0 -1.5rem 3rem;
+    padding: 4rem 0;
+
+    &.reverse {
+      .duo-image {
+        order: 2;
+      }
+
+      .duo-content-wrapper {
+        order: 1;
+        margin: 2rem -16rem 2rem 0;
+      }
+    }
+
+    .duo-image {
+      background-color: $primary;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: auto;
+      border: 0;
+      border-radius: $radius-lg;
+      display: block;
+      height: 100%;
+      min-width: 32rem;
+      order: 1;
+      position: relative;
+      width: 50%;
+      z-index: 1;
+    }
+
+    .duo-content-wrapper {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      margin: 2rem 0 2rem -16rem;
+      max-height: 16rem;
+      max-width: 24rem;
+      order: 2;
+      position: relative;
+      padding: 3rem;
+      width: 55%;
+      z-index: 2;
+
+      p,
+      ul {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-large) {
+    &.reverse {
+      .duo-content-wrapper {
+        margin: 2rem -5rem 2rem 0;
+      }
+    }
+
+    .duo-content-wrapper {
+      margin: 2rem 0 2rem -5rem;
+    }
+  }
+}

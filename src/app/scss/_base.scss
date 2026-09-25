@@ -1,0 +1,63 @@
+@import 'variables';
+
+/*************************** Global ***************************/
+
+/* rem units based on 16px font size */
+html {
+  background-color: var(--color-surface);
+  color: $font-color;
+  font-family: $font-family;
+  font-size: 16px;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-surface);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+a {
+  color: $primary;
+}
+
+.hidden-small {
+  @media (max-width: $screen-small-max) {
+    display: none !important;
+  }
+}
+
+.hidden-medium {
+  @media (min-width: $screen-medium) and (max-width: $screen-medium-max) {
+    display: none !important;
+  }
+}
+
+.hidden-large {
+  @media (min-width: $screen-large) {
+    display: none !important;
+  }
+}
+
+.show-on-small {
+  @media (min-width: $screen-medium) {
+    display: none !important;
+  }
+}
+
+.mat-mdc-card {
+  box-shadow: $shadow-sm !important;
+  border-radius: $radius-lg !important;
+  margin: 1.5rem 0;
+}
+
+.mat-mdc-tab-group {
+  font-family: $font-family !important;
+}

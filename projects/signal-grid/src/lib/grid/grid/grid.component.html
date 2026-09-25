@@ -1,0 +1,30 @@
+<h1>SignalGrid</h1>
+<div class="div-table">
+  <div
+    lib-row
+    [style.grid-template-columns]="gridTemplateColumns()"
+    class="div-row"
+    [formGroup]="formGroup"
+    [columns]="columns()"
+    [includeRowExpander]="includeRowExpander()"
+    [isHeaderRow]="true"></div>
+  <cdk-virtual-scroll-viewport [itemSize]="40" class="grid-viewport">
+    <ng-container *cdkVirtualFor="let row of model(); index as i; trackBy: trackByIndex">
+      <div
+        lib-row
+        [style.grid-template-columns]="gridTemplateColumns()"
+        class="div-row"
+        [class.div-row--alt]="i % 2 !== 0"
+        [index]="i"
+        [formGroup]="formGroup"
+        [columns]="columns()"
+        [includeRowExpander]="includeRowExpander()"
+        (rowExpanderChange)="isExpanded[i] = $event"></div>
+      @if (isExpanded[i]) {
+      <div class="div-row expander container">
+        <div class="expander content">RowExpanderWorks! Index: {{ i }}</div>
+      </div>
+      }
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+</div>

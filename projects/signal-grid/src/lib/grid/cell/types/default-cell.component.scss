@@ -1,0 +1,16 @@
+@import '../../../../../assets/scss/variables';
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.default-cell {
+  height: 100%;
+  min-height: 1.5rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    $alternate-color 0 4px,
+    $transparent-dark-grey 4px 5px
+  );
+}

@@ -1,0 +1,50 @@
+@import '../../scss/common';
+
+.hero {
+  align-items: center;
+  background-color: $primary-light;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 15rem);
+  justify-content: center;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  .logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-image: url("../../../assets/img/grid.png");
+    background-size: contain;
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    transform: rotate(349deg);
+    opacity: 0.9;
+  }
+
+  h1 {
+    color: $on-primary;
+    font-size: 3rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 3;
+  }
+
+  .overlay {
+    background: linear-gradient(135deg, $primary, $accent);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    opacity: 0.75;
+    box-shadow: $shadow-lg inset;
+  }
+
+  @media (min-width: $screen-medium) {
+    h1 {
+      font-size: 4rem;
+    }
+  }
+}

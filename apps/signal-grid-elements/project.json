@@ -1,0 +1,50 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "signal-grid-elements",
+  "projectType": "application",
+  "sourceRoot": "apps/signal-grid-elements/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/signal-grid-elements",
+        "index": "apps/signal-grid-elements/src/index.html",
+        "main": "apps/signal-grid-elements/src/main.ts",
+        "polyfills": "apps/signal-grid-elements/src/polyfills.ts",
+        "tsConfig": "apps/signal-grid-elements/tsconfig.app.json",
+        "assets": [],
+        "styles": [],
+        "scripts": [],
+        "vendorChunk": false,
+        "commonChunk": false,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "outputHashing": "none",
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": false
+            },
+            "fonts": true
+          },
+          "outputHashing": "none",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "commonChunk": false,
+          "buildOptimizer": true
+        }
+      }
+    }
+  }
+}

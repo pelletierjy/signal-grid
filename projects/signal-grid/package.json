@@ -1,0 +1,10 @@
+{
+  "name": "@jypsolution/signal-grid",
+  "version": "1.0.0",
+  "peerDependencies": {},
+  "dependencies": {},
+  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.9.",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}
