@@ -15,4 +15,6 @@ export * from './lib/grid/cell/types/string-cell.component';
 export * from './lib/grid/cell/types/boolean-cell.component';
 export * from './lib/grid/cell/types/default-cell.component';
 export * from './lib/grid/models/models';
+export * from './lib/grid/models/model';
 export * from './lib/grid/services/column-configuration-builder';
+export * from './lib/grid/expander/default-row-expander.component';

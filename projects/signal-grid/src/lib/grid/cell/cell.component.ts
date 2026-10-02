@@ -1,19 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  signal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CallbackParameter, ColumnConfiguration } from '../models/models';
 import { CellTypeRegistry } from '../registry/cell-type-registry';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: '[lib-cell]',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './cell.component.html',
   styleUrls: ['../grid/grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,13 +15,17 @@ import { CellTypeRegistry } from '../registry/cell-type-registry';
 export class CellComponent {
   columns = input.required<ColumnConfiguration[]>();
   column = input.required<ColumnConfiguration>();
-  formGroup = input.required<FormGroup>();
+  formGroup = input<FormGroup | null>(null);
   index = input.required<number>();
 
   private readonly _registry = inject(CellTypeRegistry);
   private readonly _changes = signal(0);
 
-  rowGroup = computed(() => this.formGroup().controls[this.index()] as FormGroup);
+  rowGroup = computed(() => {
+    const fg = this.formGroup();
+    const idx = this.index();
+    return fg ? (fg.controls[idx] as FormGroup | undefined) : undefined;
+  });
   rowValue = computed<Record<string, unknown>>(() => {
     this._changes();
     return this.rowGroup()?.getRawValue() ?? {};

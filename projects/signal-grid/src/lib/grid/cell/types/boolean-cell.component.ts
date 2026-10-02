@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseCellComponent } from '../base-cell.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'lib-boolean-cell',
-  standalone: false,
+  standalone: true,
+  imports: [MatCheckboxModule],
   template: `
     <mat-checkbox
       [checked]="!!value()"

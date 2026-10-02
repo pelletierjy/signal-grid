@@ -6,7 +6,7 @@
   "prefix": "lib",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "executor": "@angular/build:ng-packagr",
       "options": {
         "tsConfig": "projects/signal-grid/tsconfig.lib.json",
         "project": "projects/signal-grid/ng-package.json"

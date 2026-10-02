@@ -115,7 +115,7 @@ columns = [
       name: 'modelChange',
       kind: 'output',
       description:
-        'The full array of rows, emitted about 250 ms after the last edit. It contains every field, including read-only ones.'
+        'The full array of rows, emitted after each cell edit. It contains every field, including read-only ones.'
     }
   ];
 }

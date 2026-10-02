@@ -6,10 +6,10 @@ import { CellProps } from '../registry/cell-type-config';
 export interface ICellComponent {
   columns: InputSignal<ColumnConfiguration[]>;
   column: InputSignal<ColumnConfiguration>;
-  formGroup: InputSignal<FormGroup>;
+  formGroup: InputSignal<FormGroup | null>;
   index: InputSignal<number>;
-  rowGroup: Signal<FormGroup>;
-  formControl: Signal<AbstractControl>;
+  rowGroup: Signal<FormGroup | undefined>;
+  formControl: Signal<AbstractControl | undefined>;
   value: Signal<unknown>;
   callbackParameter: Signal<CallbackParameter>;
   isEditable: Signal<boolean>;
@@ -26,18 +26,25 @@ export interface ICellComponent {
 export abstract class BaseCellComponent implements ICellComponent {
   columns = input.required<ColumnConfiguration[]>();
   column = input.required<ColumnConfiguration>();
-  formGroup = input.required<FormGroup>();
+  formGroup = input<FormGroup | null>(null);
   index = input.required<number>();
 
-  rowGroup = computed(() => this.formGroup().controls[this.index()] as FormGroup);
-  formControl = computed<AbstractControl>(() => this.rowGroup()?.get(this.column().fieldName));
+  rowGroup = computed(() => {
+    const fg = this.formGroup();
+    const idx = this.index();
+    return fg ? (fg.controls[idx] as FormGroup | undefined) : undefined;
+  });
+  formControl = computed<AbstractControl | undefined>(() => {
+    const rg = this.rowGroup();
+    const col = this.column();
+    return rg?.get(col.fieldName);
+  });
 
   private readonly _changes = signal(0);
   value = computed<unknown>(() => {
     this._changes();
     return this.formControl()?.value;
   });
-
   callbackParameter = computed(
     () =>
       new CallbackParameter(
@@ -73,6 +80,9 @@ export abstract class BaseCellComponent implements ICellComponent {
       return;
     }
     const control = this.formControl();
+    if (!control) {
+      return;
+    }
     control.setValue(value);
     control.markAsDirty();
   }

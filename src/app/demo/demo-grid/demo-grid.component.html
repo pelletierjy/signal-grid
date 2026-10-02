@@ -1,5 +1,9 @@
 <signal-grid
   [model]="model"
   [columns]="columns"
-  [includeRowExpander]="true"
-  (modelChange)="onModelChange($event)"></signal-grid>
+  [rowExpanderConfig]="expanderConfig"
+  [filterFormConfig]="filterFormConfig"
+  (modelChange)="onModelChange($event)"
+  (filterSubmit)="onFilterSubmit($event)"
+  (saveChanges)="onSave($event)"
+  (resetChanges)="onReset()"></signal-grid>

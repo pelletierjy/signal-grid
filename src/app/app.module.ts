@@ -18,6 +18,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GridModule } from 'projects/signal-grid/src/lib/grid/grid.module';
 import { DEMO_CELL_TYPES } from './demo/cell-types/demo-cell-types';
 
+// Formly
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,7 +39,9 @@ import { DEMO_CELL_TYPES } from './demo/cell-types/demo-cell-types';
     HomeModule,
     HttpClientModule,
     ScrollerModule,
-    GridModule.forRoot({ types: DEMO_CELL_TYPES })
+    GridModule.forRoot({ types: DEMO_CELL_TYPES }),
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({})
   ],
   providers: [
     Location,

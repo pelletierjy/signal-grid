@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseCellComponent } from '../base-cell.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lib-string-cell',
-  standalone: false,
+  standalone: true,
+  imports: [MatInputModule, FormsModule],
   template: `
     @if (isEditable()) {
     <input

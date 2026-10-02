@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GridModule } from '../../../projects/signal-grid/src/lib/grid/grid.module';
+import { GridComponent } from '../../../projects/signal-grid/src/lib/grid/grid/grid.component';
 import { FooterModule } from '../footer/footer.module';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { CodeBlockComponent } from './code-block.component';
@@ -22,6 +23,6 @@ import { WebComponentPageComponent } from './pages/web-component-page.component'
     StylingPageComponent,
     WebComponentPageComponent
   ],
-  imports: [AngularMaterialModule, CommonModule, DocsRoutingModule, FooterModule, GridModule]
+  imports: [AngularMaterialModule, CommonModule, DocsRoutingModule, FooterModule, GridModule, GridComponent]
 })
 export class DocsModule {}

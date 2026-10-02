@@ -9,22 +9,40 @@
   }">
   +
 </div>
-} @for (column of columns(); track $index) { @if (isHeaderRow()) {
-<div class="div-cell-container div-cell header">
-  <div>{{ column.columnHeaderText }}</div>
-</div>
-} @else { @if (formGroup().get(index().toString())) {
-<div
-  lib-cell
-  class="div-cell"
-  [column]="column"
-  [columns]="columns()"
-  [formGroup]="formGroup()"
-  [index]="index()"></div>
 }
-<div
-  [ngClass]="{ 'value-indicator': true, changed: !formControl()?.pristine }"
-  title="row has pending changes">
-  *
-</div>
-} }
+@for (column of columns(); track $index) {
+  @if (isHeaderRow()) {
+    <div class="div-cell-container div-cell header">
+      <div>{{ column.columnHeaderText }}</div>
+      @if (column.resizable) {
+        <div
+          class="resize-handle"
+          (mousedown)="$event.preventDefault(); $event.stopPropagation(); resizeStart.emit({event: $event, column: column})">
+        </div>
+      }
+    </div>
+  }
+  @else {
+    @if (formGroup().get(index().toString())) {
+      <div
+        lib-cell
+        class="div-cell"
+        [column]="column"
+        [columns]="columns()"
+        [formGroup]="formGroup()"
+        [index]="index()"></div>
+    }
+    <div
+      [ngClass]="{ 'value-indicator': true, changed: !formControl()?.pristine }"
+      title="row has pending changes">
+      *
+    </div>
+  }
+}
+@if (isRowExpanded() && rowExpanderConfig()) {
+  <div class="expander-row">
+    <ng-container
+      *ngComponentOutlet="rowExpanderConfig(); inputs: {rowData: rowData(), rowIndex: index()}">
+    </ng-container>
+  </div>
+}

@@ -1,3 +1,3 @@
 /* List all imports here */
-@import 'app/scss/common.scss';
-@import './custom-theme.scss';
+@use 'app/scss/common.scss' as *;
+@use './custom-theme.scss' as *;

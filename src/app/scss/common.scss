@@ -1,4 +1,4 @@
-@import 'variables';
-@import 'typography';
-@import 'base';
-@import 'layout';
+@forward 'variables';
+@forward 'typography';
+@forward 'base';
+@forward 'layout';

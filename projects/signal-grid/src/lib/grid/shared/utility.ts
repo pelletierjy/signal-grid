@@ -1,4 +1,7 @@
-import * as _ from 'lodash';
+import isFunction from 'lodash/isFunction';
+import isArray from 'lodash/isArray';
+import isUndefined from 'lodash/isUndefined';
+import deepEqual from 'fast-deep-equal';
 
 // @dynamic
 export class Utility {
@@ -15,11 +18,11 @@ export class Utility {
   }
 
   static isFunction(value: any): boolean {
-    return this.isDefined(value) && _.isFunction(value);
+    return this.isDefined(value) && isFunction(value);
   }
 
   static isArray(value: any) {
-    return this.isDefined(value) && _.isArray(value);
+    return this.isDefined(value) && isArray(value);
   }
 
   static isDefined(value: any, subProperties: (string | number)[] = []): boolean {
@@ -73,7 +76,7 @@ export class Utility {
       this.isNullOrUndefined(value) ||
       typeof value === 'undefined' ||
       (!value && value !== 0 && value !== false) ||
-      _.isUndefined(value)
+      isUndefined(value)
     );
   }
 
@@ -91,7 +94,7 @@ export class Utility {
   }
 
   static equals(a: any, b: any): boolean {
-    return JSON.stringify(a) === JSON.stringify(b);
+    return deepEqual(a, b);
   }
 
   static isFound(value: any): boolean {

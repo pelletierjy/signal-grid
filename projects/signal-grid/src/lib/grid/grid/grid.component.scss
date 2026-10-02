@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/variables';
+@use '../../../../assets/scss/variables' as *;
 
 .div-table {
   display: block;
@@ -42,6 +42,36 @@
   }
 }
 
+.resizer {
+  user-select: none;
+  touch-action: none;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  z-index: 1;
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.resize-handle:hover,
+.resize-handle.resizeing {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.expander-row {
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  background-color: $surface;
+}
+
 .expander {
   cursor: pointer;
   min-width: 1rem;
@@ -74,4 +104,45 @@
   background: none;
   color: inherit;
   font: inherit;
+}
+
+.signal-grid-save-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: $cell-padding;
+  border-bottom: 1px solid $transparent-dark-grey;
+  background-color: $surface;
+
+  &.has-changes {
+    background-color: var(--color-surface-alt, #f6f7f9);
+  }
+}
+
+.signal-grid-filter {
+  padding: $cell-padding;
+  border-bottom: 1px solid $transparent-dark-grey;
+  background-color: $surface;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: $cell-padding;
+    width: 100%;
+  }
+
+  &__fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $cell-padding;
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $cell-padding;
+    align-items: center;
+  }
 }

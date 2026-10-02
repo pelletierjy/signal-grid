@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { ScrollerModule } from '../shared/scroller/scroller.module';
 import { GridModule } from 'projects/signal-grid/src/lib/grid/grid.module';
+import { GridComponent } from 'projects/signal-grid/src/lib/grid/grid/grid.component';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -20,7 +21,8 @@ import { GridModule } from 'projects/signal-grid/src/lib/grid/grid.module';
     HeroModule,
     HomeRoutingModule,
     ScrollerModule,
-    GridModule
+    GridModule,
+    GridComponent
   ]
 })
 export class HomeModule {}

@@ -1,5 +1,8 @@
+import { Type } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { CellProps, CellTypeName } from '../registry/cell-type-config';
+import { Model } from './model';
 
 export enum SortOrder {
   Default = 0,
@@ -30,14 +33,13 @@ export enum PipeType {
 
 export class CallbackParameter {
   constructor(
-    public value: any,
+    public value: unknown,
     public formGroup: FormGroup,
     public index: number,
     public fieldName: (callbackParameter) => string
   ) {}
 }
 
-// https://openmail.atlassian.net/wiki/spaces/QPLT/pages/929660929/Qool-Grid+Configuration
 export class ColumnConfiguration {
   static readonly numberColumnIndex = -1000;
   static readonly nA = 'nA';
@@ -81,4 +83,32 @@ export class ColumnConfiguration {
     this.columnHeaderText = text;
     this.tooltipText = text;
   }
+}
+
+/**
+ * Formly filter form configuration.
+ * When provided, the grid renders an optional filter form above its content.
+ */
+export interface SignalGridFilterFormConfig {
+  /** Formly field definitions. */
+  fields: FormlyFieldConfig[];
+  /** Optional model object that the form operates on. */
+  model?: Record<string, unknown>;
+  /** Text for the submit button (default: "Apply"). */
+  submitBtnText?: string;
+  /** Text for the reset button (default: "Reset"). */
+  resetBtnText?: string;
+  /** Whether to show the reset button (default: true). */
+  showReset?: boolean;
+}
+
+/**
+ * Configuration for the row expander component.
+ * When provided, the grid renders a row expander button in each row.
+ */
+export interface RowExpanderConfig {
+  /** The component to instantiate when a row is expanded. */
+  component: Type<unknown>;
+  /** Width of the expander column (default: 40px). */
+  width?: number;
 }

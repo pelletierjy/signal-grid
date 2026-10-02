@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { Utility } from '../shared/utility';
 import { CallbackParameter, ColumnConfiguration } from '../models/models';
 import { CellProps, CellTypeName } from '../registry/cell-type-config';
@@ -9,6 +8,8 @@ export class ColumnConfigurationBuilder {
 
   constructor() {}
   private _isEditable: (callbackParameter: CallbackParameter) => boolean = () => false;
+  private _fieldWidth: number = null;
+  private _resizable: boolean = true;
   private _fieldName: string; // The fieldName can't be dynamin anymore since it is bound to a form control.
 
   withType(
@@ -41,10 +42,22 @@ export class ColumnConfigurationBuilder {
     return this;
   }
 
+  resizable(value: boolean = true): ColumnConfigurationBuilder {
+    this._resizable = value;
+    return this;
+  }
+
+  width(widthPx: number): ColumnConfigurationBuilder {
+    this._fieldWidth = widthPx;
+    return this;
+  }
+
   build(text: string = ''): ColumnConfiguration {
     const column = new ColumnConfiguration(text, this._fieldName, this._type);
     column.isEditable = this._isEditable;
     column.props = this._props;
+    column.width = this._fieldWidth;
+    column.resizable = this._resizable;
     return column;
   }
 }

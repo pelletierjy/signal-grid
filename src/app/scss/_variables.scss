@@ -1,4 +1,4 @@
-@import 'tokens';
+@use 'tokens' as *;
 
 // Semantic color aliases (see _tokens.scss for the underlying CSS custom properties).
 $primary: var(--color-primary);

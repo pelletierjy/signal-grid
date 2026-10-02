@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GridModule } from '../../../../projects/signal-grid/src/lib/grid/grid.module';
+import { GridComponent } from '../../../../projects/signal-grid/src/lib/grid/grid/grid.component';
 import { LazyBooleanCellComponent } from './lazy-boolean-cell.component';
 import { LazyCellComponent } from './lazy-cell.component';
 import { LazyGridComponent } from './lazy-grid.component';
@@ -10,6 +11,7 @@ import { LazyGridComponent } from './lazy-grid.component';
   declarations: [LazyGridComponent],
   imports: [
     CommonModule,
+    GridComponent,
     GridModule.forChild({
       types: [
         { name: 'lazy-cell', component: LazyCellComponent },
