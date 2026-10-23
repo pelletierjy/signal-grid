@@ -108,11 +108,11 @@ export class EditableDemoComponent {
   (saveChanges)="onSave($event)"
   (resetChanges)="onReset()"></signal-grid>`;
 
-  onModelChange(_model: GridSampleData[]): void {
+  onModelChange(_model: unknown[]): void {
     // Merged model with edits applied; emitted (debounced) while editing.
   }
 
-  onSave(savedModel: GridSampleData[]): void {
+  onSave(savedModel: unknown[]): void {
     this.lastSave.set(JSON.stringify(savedModel, null, 2));
   }
 
