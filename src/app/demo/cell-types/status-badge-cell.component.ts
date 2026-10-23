@@ -11,16 +11,29 @@ import { BaseCellComponent } from '../../../../projects/signal-grid/src/lib/grid
   `,
   styles: [
     `
-      .badge {
-        display: inline-block;
-        padding: 2px 10px;
-        border-radius: 12px;
-        font-size: 0.85em;
-        background: var(--color-border);
-        color: var(--color-text);
+      :host {
+        display: flex;
+        align-items: center;
+        height: 100%;
       }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background: var(--color-border);
+        color: var(--color-text-muted);
+        border: 1px solid transparent;
+        transition: transform 0.15s ease;
+      }
+
       .badge.mapped {
-        color: #1c1a26;
+        border-color: rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
       }
     `
   ],

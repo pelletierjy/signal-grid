@@ -2,56 +2,111 @@
 
 :host {
   display: block;
-  max-width: 58rem;
-  padding-bottom: 3rem;
+  max-width: 56rem;
+  padding-bottom: 4rem;
 }
 
 h1 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: $font-color;
 }
 
 h2 {
-  margin: 2.25rem 0 0.5rem;
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: $font-color;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 h3 {
-  margin: 1.5rem 0 0.25rem;
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: $font-color;
 }
 
 p,
 li {
-  line-height: 1.6;
-  color: $font-color;
+  line-height: 1.7;
+  color: $font-color-light;
+  font-size: 0.9375rem;
 }
 
 .lead {
   color: $font-color-light;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 code {
-  padding: 0.1rem 0.35rem;
-  background: $surface-alt;
-  border-radius: $radius-sm;
-  font-size: 0.9em;
+  padding: 0.12rem 0.4rem;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85em;
+  color: var(--color-accent-dark);
+  font-weight: 500;
+}
+
+app-code-block {
+  display: block;
+  margin: 1rem 0;
+
+  pre {
+    margin: 0;
+    padding: 1.25rem;
+    overflow-x: auto;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow-sm);
+
+    code {
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      color: inherit;
+      font-weight: 400;
+    }
+  }
 }
 
 table {
   width: 100%;
   margin: 1rem 0;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
 
   th,
   td {
-    padding: 0.6rem 0.8rem;
+    padding: 0.65rem 0.9rem;
     text-align: left;
     vertical-align: top;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid var(--color-border);
   }
 
   th {
     font-weight: 600;
-    border-bottom: 2px solid $border-color;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $font-color-light;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
   }
 
   td:first-child > code {
@@ -60,26 +115,46 @@ table {
 }
 
 .note {
-  margin: 1rem 0;
-  padding: 0.75rem 1rem;
-  background: $primary-light;
-  border-left: 3px solid $primary;
-  border-radius: $radius-sm;
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-primary-light);
+  border-left: 4px solid $primary;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: $font-color;
+  line-height: 1.6;
 }
 
 .demo {
-  margin: 1rem 0;
-  // The docs examples use a short scrolling area. This is the grid's own styling API at work.
+  margin: 1.25rem 0;
   --signal-grid-viewport-height: 14rem;
 
-  // The grid prints its own title; the page already has one.
   ::ng-deep signal-grid h1 {
     display: none;
   }
 }
 
 .output {
-  margin: 0.5rem 0 0;
+  margin: 0.75rem 0 0;
   font-size: 0.85rem;
   color: $font-color-light;
+  font-family: 'Roboto Mono', monospace;
+  background: var(--color-surface-elevated);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+:host {
+  .theme-custom {
+    --signal-grid-header-bg: #1f2937;
+    --signal-grid-header-color: #f9fafb;
+    --signal-grid-row-alt-bg: #fef3c7;
+    --signal-grid-border-color: #9ca3af;
+    --signal-grid-radius: 0;
+    --signal-grid-cell-padding: 0.6rem 0.75rem;
+    --signal-grid-bg: #ffffff;
+    --signal-grid-text-color: #111827;
+    --signal-grid-font-family: Georgia, serif;
+  }
 }

@@ -15,7 +15,7 @@ export class DemoComponent {
   }
 
   navigateTo(value) {
-    this.selectedDemo = value || 'demo-grid';
+    this.selectedDemo = value || 'from-support';
     this.router.navigate(['/demo/', this.selectedDemo]);
   }
 }
