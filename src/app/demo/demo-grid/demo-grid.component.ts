@@ -4,10 +4,17 @@ import { Router } from '@angular/router';
 import { TestDataService } from '../../../../projects/signal-grid/src/lib/grid/test-data.service';
 import { GridSampleData } from '../../../../projects/signal-grid/src/lib/grid/grid-sample-data';
 import { Model } from '../../../../projects/signal-grid/src/lib/grid/models/model';
-import { ColumnConfiguration, SignalGridFilterFormConfig } from '../../../../projects/signal-grid/src/lib/grid/models/models';
+import {
+  ColumnConfiguration,
+  SignalGridFilterFormConfig
+} from '../../../../projects/signal-grid/src/lib/grid/models/models';
+import { ColumnSchema } from '../../../../projects/signal-grid/src/lib/grid/models/column-schema';
 import { DefaultRowExpanderComponent } from '../../../../projects/signal-grid/src/lib/grid/expander/default-row-expander.component';
-import { Type } from '@angular/core';
+import { signal, Type } from '@angular/core';
 import { buildDemoColumns } from './demo-columns';
+
+/** localStorage key for the demo's saved model — lets saves survive page reloads. */
+const STORAGE_KEY = 'sg-demo-model';
 
 @Component({
   selector: 'app-demo-grid',
@@ -17,10 +24,16 @@ import { buildDemoColumns } from './demo-columns';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoGridComponent extends DemoComponent {
-  columns: ColumnConfiguration[];
+  columns: (ColumnConfiguration | ColumnSchema)[];
   model: GridSampleData[];
   originalModel: GridSampleData[];
   filterModel: Record<string, unknown> = {};
+
+  /** Factory rows, kept so "Clear persisted" can restore them. */
+  private readonly factoryData: GridSampleData[];
+
+  /** Summary of the last save (JSON of the rows it changed), null = never saved. */
+  readonly lastSave = signal<string | null>(null);
 
   /** Formly filter configuration with appropriate field types for each column */
   filterFormConfig: SignalGridFilterFormConfig = {
@@ -69,18 +82,61 @@ export class DemoGridComponent extends DemoComponent {
   constructor(_router: Router, gridTest: TestDataService) {
     super(_router);
     this.columns = [...gridTest.columns, ...buildDemoColumns()];
+    this.factoryData = gridTest.data;
     this.model = gridTest.data;
     this.originalModel = [...gridTest.data];
+    // Restore the last saved model, if any — saves survive page reloads.
+    const persisted = localStorage.getItem(STORAGE_KEY);
+    if (persisted) {
+      try {
+        const restored = JSON.parse(persisted) as GridSampleData[];
+        this.model = restored;
+        this.originalModel = [...restored];
+        this.lastSave.set(
+          `(restored from localStorage — ${restored.length} rows)\n` +
+            JSON.stringify(restored.slice(0, 3), null, 2) +
+            '\n…'
+        );
+      } catch {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
   }
 
   onModelChange(model: Model[]): void {
-    console.log('modelChange', model);
+    // Merged model with edits applied; emitted (debounced) while editing.
   }
 
-  /** Handles save — updates the original model with changes. */
+  /** Handles save — persists to localStorage and reports the rows it changed. */
   onSave(savedModel: Model[]): void {
-    this.originalModel = [...savedModel] as GridSampleData[];
-    this.model = [...savedModel] as GridSampleData[];
+    const saved = [...savedModel] as GridSampleData[];
+    // mergedModel() passes untouched rows through by identity, so an identity
+    // difference against the pre-save model pinpoints exactly what changed.
+    const edited = saved.filter((row, i) => row !== this.model[i]);
+    this.originalModel = saved;
+    this.model = saved;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    this.lastSave.set(
+      JSON.stringify(
+        {
+          at: new Date().toISOString(),
+          totalRows: saved.length,
+          editedCount: edited.length,
+          edited
+        },
+        null,
+        2
+      )
+    );
+  }
+
+  /** Drops the persisted model and restores the factory rows. */
+  clearPersisted(): void {
+    localStorage.removeItem(STORAGE_KEY);
+    this.lastSave.set(null);
+    this.model = [...this.factoryData];
+    this.originalModel = [...this.factoryData];
+    this.filterModel = {};
   }
 
   /** Handles reset — reverts to original model. */
@@ -93,7 +149,9 @@ export class DemoGridComponent extends DemoComponent {
     this.filterModel = filterValue;
     // Pre-process filter values for faster comparison
     const prepped = this._prepFilter(filterValue);
-    this.model = this.originalModel.filter(row => this._matches(row as unknown as Record<string, unknown>, prepped));
+    this.model = this.originalModel.filter(row =>
+      this._matches(row as unknown as Record<string, unknown>, prepped)
+    );
   }
 
   /** Resets filters and restores original model */
@@ -127,7 +185,8 @@ export class DemoGridComponent extends DemoComponent {
       } else if (typeof value === 'number') {
         if (typeof rowValue !== 'number' || rowValue < value) return false;
       } else if (typeof value === 'string') {
-        if (typeof rowValue !== 'string' || !rowValue.toLowerCase().includes(value as string)) return false;
+        if (typeof rowValue !== 'string' || !rowValue.toLowerCase().includes(value as string))
+          return false;
       }
     }
     return true;

@@ -2,3 +2,37 @@
   outline: 2px solid var(--color-accent);
   outline-offset: -2px;
 }
+
+.save-panel {
+  margin-top: 1rem;
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 6px;
+  background: var(--color-surface-alt, #f6f7f9);
+  color: var(--color-text, #333);
+  font-size: 0.875rem;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0.75rem;
+    border-bottom: 1px solid var(--color-border, #ddd);
+  }
+
+  &__body {
+    margin: 0;
+    padding: 0.75rem;
+    max-height: 260px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+  }
+
+  &__empty {
+    margin: 0;
+    padding: 0.75rem;
+    opacity: 0.7;
+  }
+}

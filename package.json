@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "buildVersion": "0000",
   "license": "MIT",
-  "repository": "https://github.com/Openmail/Qool.Grid.Ng",
+  "repository": "https://github.com/pelletierjy/signal-grid",
   "scripts": {
     "ng": "ng",
     "start": "nx serve",

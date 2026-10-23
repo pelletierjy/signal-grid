@@ -23,6 +23,13 @@ import { WebComponentPageComponent } from './pages/web-component-page.component'
     StylingPageComponent,
     WebComponentPageComponent
   ],
-  imports: [AngularMaterialModule, CommonModule, DocsRoutingModule, FooterModule, GridModule, GridComponent]
+  imports: [
+    AngularMaterialModule,
+    CommonModule,
+    DocsRoutingModule,
+    FooterModule,
+    GridModule,
+    GridComponent
+  ]
 })
 export class DocsModule {}

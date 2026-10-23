@@ -11,14 +11,15 @@ export class TestDataService {
   columns: ColumnConfiguration[];
 
   constructor() {
-    this.data = [...Array(1000)].map((_, index) =>
-      new GridSampleData(
-        index,
-        `Name-${index}`,
-        index % 2 === 0,
-        (Math.floor(Math.random() * 4) + 1) * 25,
-        Math.random() * 10 > 5
-      )
+    this.data = [...Array(1000)].map(
+      (_, index) =>
+        new GridSampleData(
+          index,
+          `Name-${index}`,
+          index % 2 === 0,
+          (Math.floor(Math.random() * 4) + 1) * 25,
+          Math.random() * 10 > 5
+        )
     );
     this.columns = [
       new ColumnConfigurationBuilder().withField('id').width(80).withType('number').build('ID'),
@@ -33,7 +34,12 @@ export class TestDataService {
         .width(60)
         .withType('boolean')
         .build('Registered'),
-      new ColumnConfigurationBuilder().withField('age').width(80).editable().withType('number').build('Age'),
+      new ColumnConfigurationBuilder()
+        .withField('age')
+        .width(80)
+        .editable()
+        .withType('number')
+        .build('Age'),
       new ColumnConfigurationBuilder()
         .withField('isActive')
         .width(50)

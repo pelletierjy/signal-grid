@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { CellProps, CellTypeName } from '../registry/cell-type-config';
 import { Model } from './model';
@@ -31,6 +31,12 @@ export enum PipeType {
   DaysOrHours
 }
 
+/**
+ * The context passed to every per-row column callback.
+ *
+ * `formGroup` is the **row's** group (only rows currently rendered have one),
+ * so other fields of the same row are read with `formGroup.get('otherField')`.
+ */
 export class CallbackParameter {
   constructor(
     public value: unknown,
@@ -45,9 +51,7 @@ export class ColumnConfiguration {
   static readonly nA = 'nA';
   static readonly signalGridRowSelectorFieldName = 'signalGridRowSelectorFieldName';
   readonly GUID: string;
-  // The following properties are for JSON dump purpose to have visibility on the field name
   readonly isRowSelector: boolean;
-  // The following properties could easily be turned into callback like the following ones as needed.
   visibleColumnNumber: number;
   sortOrder: SortOrder = SortOrder.Default;
   inputRequiredType = InputRequiredType.Optional;
@@ -72,6 +76,10 @@ export class ColumnConfiguration {
   defaultSelectedRowCellValue: (callback: CallbackParameter) => any;
   cellCssClass: (callback: CallbackParameter) => string;
   props?: CellProps | ((callback: CallbackParameter) => CellProps);
+  /** Cell wrapper names (outermost first), resolved through the wrapper registry. */
+  wrappers: string[] = [];
+  /** Sync validators attached to this field's control in every row group. */
+  validators: ValidatorFn | ValidatorFn[] = null;
   customFooter: (data: any[]) => any = null;
 
   constructor(

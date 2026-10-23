@@ -30,7 +30,7 @@ new ColumnConfigurationBuilder()
 
 ### Writing a cell type
 
-Extend `BaseCellComponent`. It provides the inputs `columns`, `column`, `formGroup` and `index`, plus `value()`, `isEditable()`, `props()`, `formControl()`, `rowGroup()`, `callbackParameter()` and `setValue()`.
+Extend `BaseCellComponent`. It provides the inputs `columns`, `column`, `rowKey` and `rowIndex`, plus `value()`, `isEditable()`, `props()`, `formControl()`, `rowGroup()`, `callbackParameter()` and `setValue()`.
 
 ```ts
 @Component({
@@ -46,7 +46,7 @@ export class ToggleCellComponent extends BaseCellComponent {}
 - Write new values with `setValue()`. It ignores the write while the cell is read-only and marks the row as having pending changes.
 - Calling `formControl().setValue()` directly bypasses the read-only guard.
 - Columns on the same field share one form control, so the grid never disables controls. Render read-only state yourself.
-- Avoid binding `[formControl]` in a cell. Each binding revalidates the whole grid form, which gets slow with thousands of rows. Bind `[value]` and call `setValue()` instead.
+- Avoid binding `[formControl]` in a cell. Each binding revalidates the row's form group on every change. Bind `[value]` and call `setValue()` instead.
 - The grid wraps your component in a cell container that already applies the column's `cellCssClass`.
 
 An unregistered type name shows the value as read-only text and logs one warning per name and field. The `<signal-grid>` web component only has the built-in types.

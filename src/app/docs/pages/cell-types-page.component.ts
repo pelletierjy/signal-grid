@@ -46,6 +46,26 @@ import { sampleRows } from '../docs-sample';
       </li>
     </ul>
 
+    <h2>Wrappers</h2>
+    <p>
+      A column can declare <code>wrappers: ['name']</code> — component names resolved through a
+      second registry, the same way Formly composes wrappers around a field. The grid creates the
+      wrapper chain once per cell and inserts the cell (or the next wrapper) into the anchor your
+      wrapper template provides:
+    </p>
+    <app-code-block [code]="wrapperSnippet" />
+    <ul>
+      <li>
+        Register with
+        <code>GridModule.forRoot({{ '{' }} wrappers: [...] {{ '}' }})</code>.
+      </li>
+      <li>
+        Extend <code>BaseCellWrapper</code>: you get <code>column()</code>, <code>rowKey()</code>,
+        <code>rowGroup()</code> and <code>rowInvalid()</code> for validation messages and the like.
+      </li>
+      <li>Wrappers run outermost-first in the order listed on the column.</li>
+    </ul>
+
     <h2>Writing a cell type</h2>
     <p>Extend <code>BaseCellComponent</code>. It already has everything a cell needs:</p>
     <table>
@@ -147,12 +167,12 @@ export class CellTypesPageComponent {
 
   members = [
     {
-      name: 'columns, column, formGroup, index',
-      description: 'The inputs the grid gives every cell.'
+      name: 'columns, column, rowKey, rowIndex',
+      description: 'The inputs the grid gives every cell. rowKey identifies the row object.'
     },
     {
       name: 'value()',
-      description: 'The current cell value. It updates when the form control changes.'
+      description: 'The current cell value. It updates when the row\u2019s form control changes.'
     },
     { name: 'isEditable()', description: 'Whether this row of the column is editable.' },
     { name: 'props()', description: 'The column props for this row, or an empty object.' },
@@ -160,10 +180,14 @@ export class CellTypesPageComponent {
       name: 'setValue(value)',
       description: 'Writes a new value, only while the cell is editable.'
     },
-    { name: 'formControl()', description: 'The form control behind the cell.' },
+    {
+      name: 'formControl()',
+      description: 'The control behind the cell, inside this row\u2019s group.'
+    },
     {
       name: 'rowGroup()',
-      description: 'The form group of the whole row, to read the other fields.'
+      description:
+        'The form group of this row, to read the other fields. Rows scrolled out of the viewport have no group.'
     },
     {
       name: 'callbackParameter()',
@@ -172,10 +196,31 @@ export class CellTypesPageComponent {
   ];
 
   registerSnippet = `// app.module.ts: available everywhere
-GridModule.forRoot({ types: [{ name: 'status-badge', component: StatusBadgeCellComponent }] })
+GridModule.forRoot({
+  types: [{ name: 'status-badge', component: StatusBadgeCellComponent }],
+  wrappers: [{ name: 'validation', component: ValidationWrapperComponent }]
+})
 
 // lazy-loaded feature module: adds to the above and can override it for this module only
 GridModule.forChild({ types: [{ name: 'boolean', component: YesNoCellComponent }] })`;
+
+  wrapperSnippet = `@Component({
+  selector: 'app-validation-wrapper',
+  standalone: true,
+  template: \`
+    <div class="cell-with-error" [class.invalid]="rowInvalid()">
+      <!-- the cell (or the next wrapper) renders here -->
+      <ng-container [sgWrapperHost]="host()"></ng-container>
+      @if (rowInvalid()) {
+      <span class="error">invalid</span>
+      }
+    </div>
+  \`
+})
+export class ValidationWrapperComponent extends BaseCellWrapper {}
+
+// column:
+{ field: 'age', type: 'number', editable: true, wrappers: ['validation'] }`;
 
   toggleSnippet = `@Component({
   selector: 'app-toggle-cell',

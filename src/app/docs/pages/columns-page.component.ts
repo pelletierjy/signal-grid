@@ -28,6 +28,16 @@ import { sampleRows } from '../docs-sample';
       }
     </table>
 
+    <h2>Schema objects</h2>
+    <p>
+      The <code>[columns]</code> input also accepts plain object literals — a
+      <code>ColumnSchema</code>, the grid's equivalent of a Formly field config. Schemas are plain
+      data (plus optional callbacks), so column sets can come from JSON or a server; the grid
+      compiles them to <code>ColumnConfiguration</code> once when the input changes. Builder output
+      and schema literals can be mixed freely in one array.
+    </p>
+    <app-code-block [code]="schemaSnippet" />
+
     <div class="note">
       A column's field is also the name of the form control behind it, so two columns on the same
       field show and edit the same value.
@@ -142,7 +152,7 @@ export class ColumnsPageComponent {
     {
       name: 'formGroup',
       description:
-        'The grid form. Read other fields of the row with formGroup.get([String(index), "otherField"]).'
+        'The row\u2019s form group. Read other fields of the same row with formGroup.get("otherField").'
     },
     { name: 'fieldName()', description: 'The column field.' }
   ];
@@ -156,4 +166,19 @@ export class ColumnsPageComponent {
 
 // not on the builder: set it on the built column
 status.cellCssClass = cb => (cb.value ? 'row-active' : '');`;
+
+  schemaSnippet = `import { ColumnSchema } from '@jypsolution/signal-grid';
+
+const columns: ColumnSchema[] = [
+  { field: 'id', header: 'ID', type: 'number', width: 80 },
+  { field: 'name', header: 'Name', type: 'string', editable: true, width: 180 },
+  {
+    field: 'isActive',
+    header: 'Active',
+    type: 'status-badge',
+    props: { colors: { true: '#d6eadf' } },
+    cssClass: cb => (cb.value ? 'row-active' : ''),
+    wrappers: ['validation']
+  }
+];`;
 }

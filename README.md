@@ -10,25 +10,26 @@ A lightweight, signal-powered data grid for Angular. Designed for large datasets
 
 ## Why SignalGrid?
 
-Most data grids lean on RxJS or manual change detection to stay in sync. SignalGrid asks a different question: *what if the entire grid — rows, cells, edits, and validation — reacted through Angular signals?* The result is a grid that updates precisely when its data changes, without the ceremony of subjects or the overhead of Zone.js polling.
+Most data grids lean on RxJS or manual change detection to stay in sync. SignalGrid asks a different question: _what if the entire grid — rows, cells, edits, and validation — reacted through Angular signals?_ The result is a grid that updates precisely when its data changes, without the ceremony of subjects or the overhead of Zone.js polling.
 
 Key ideas explored here:
 
-- **Signal-native architecture** — `model` and `columns` are signal inputs; internal state (form groups, cell values, expanded rows) is held in signals and computed values
-- **Signal-driven forms** — each row becomes a `FormGroup` rebuilt reactively via `effect()`, and changes flow back out through a debounced `modelChange` signal
+- **Signal-native architecture** — `model` and `columns` are signal inputs; internal state (per-row form groups, cell values, dirty/valid flags, expanded rows) is held in signals and computed values
+- **Viewport-scoped forms** — form groups exist only for rows that are rendered; unsaved edits are stored sparsely and keyed by **row object identity**, so filtering/sorting never loses or misplaces edits, and cost doesn't grow with row count
+- **Schema-driven cells** — `ColumnSchema` object literals (a Formly-style field config) or `ColumnConfigurationBuilder`; each cell's component is resolved from a type registry and rendered by a single outlet, with optional Formly-style wrappers
 - **OnPush by default** — the grid never relies on default change detection; signals handle the rest
 
 ## Features
 
-| Capability | Description |
-|---|---|
-| ⚡ **Signal reactivity** | Fine-grained updates with Angular signals + `OnPush` |
-| 🧮 **Virtual scrolling** | Smooth large-dataset rendering via CDK virtual scroll |
-| 📝 **Editable cells** | Reactive forms per row with debounced `modelChange` output |
-| 🧩 **Extensible types** | Register custom cell components; built-ins for `string`, `number`, `boolean`, `default` |
-| 🎨 **CSS variable theming** | Style entirely through custom properties; dark mode included |
-| 🏗️ **Fluent API** | Configure columns with `ColumnConfigurationBuilder` |
-| 🌐 **Web component** | Export as `<signal-grid>` for non-Angular hosts |
+| Capability                  | Description                                                                             |
+| --------------------------- | --------------------------------------------------------------------------------------- |
+| ⚡ **Signal reactivity**    | Fine-grained updates with Angular signals + `OnPush`                                    |
+| 🧮 **Virtual scrolling**    | Smooth large-dataset rendering via CDK virtual scroll                                   |
+| 📝 **Editable cells**       | Reactive forms per rendered row with debounced `modelChange` output                      |
+| 🧩 **Extensible types**     | Register custom cell components and wrappers; built-ins for `string`, `number`, `boolean`, `default` |
+| 🎨 **CSS variable theming** | Style entirely through custom properties; dark mode included                            |
+| 🏗️ **Fluent API**           | Configure columns with `ColumnConfigurationBuilder` or plain `ColumnSchema` objects      |
+| 🌐 **Web component**        | Export as `<signal-grid>` for non-Angular hosts                                         |
 
 ## Demo Site & Documentation
 
@@ -85,11 +86,7 @@ export class MyComponent {
 ```
 
 ```html
-<signal-grid
-  [model]="users()"
-  [columns]="columns"
-  (modelChange)="users.set($event)">
-</signal-grid>
+<signal-grid [model]="users()" [columns]="columns" (modelChange)="users.set($event)"> </signal-grid>
 ```
 
 See the [Getting Started guide](https://github.com/pelletierjy/signal-grid/tree/main/specs/001-dynamic-cell-components) for full usage details.
@@ -98,21 +95,21 @@ See the [Getting Started guide](https://github.com/pelletierjy/signal-grid/tree/
 
 This repo is an Nx monorepo with three parts:
 
-| Package | Path | Description |
-|---|---|---|
-| `signal-grid` | `projects/signal-grid` | The grid library |
-| `signal-grid-site` | `src/` | Demo app & documentation |
-| `signal-grid-elements` | `apps/signal-grid-elements` | Web component wrapper |
+| Package                | Path                        | Description              |
+| ---------------------- | --------------------------- | ------------------------ |
+| `signal-grid`          | `projects/signal-grid`      | The grid library         |
+| `signal-grid-site`     | `src/`                      | Demo app & documentation |
+| `signal-grid-elements` | `apps/signal-grid-elements` | Web component wrapper    |
 
 ### Common tasks
 
-| Task | Command |
-|---|---|
-| Serve demo | `nx serve signal-grid-site` |
-| Build library | `nx build signal-grid` |
-| Build demo | `nx build signal-grid-site` |
+| Task                | Command                         |
+| ------------------- | ------------------------------- |
+| Serve demo          | `nx serve signal-grid-site`     |
+| Build library       | `nx build signal-grid`          |
+| Build demo          | `nx build signal-grid-site`     |
 | Build web component | `nx build signal-grid-elements` |
-| Lint | `npm run lint` |
+| Lint                | `npm run lint`                  |
 
 ## Architecture
 

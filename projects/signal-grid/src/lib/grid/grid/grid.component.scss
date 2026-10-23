@@ -19,6 +19,7 @@
   position: relative;
   display: grid;
   width: auto;
+  grid-template-columns: var(--sg-grid-template-columns);
   &--alt {
     background-color: $alternate-color;
   }

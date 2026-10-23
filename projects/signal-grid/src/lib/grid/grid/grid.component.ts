@@ -1,25 +1,56 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal, Type } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { map, switchMap } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  Type
+} from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Model } from '../models/model';
 import { ColumnConfiguration, SignalGridFilterFormConfig } from '../models/models';
+import { ColumnSchema, compileColumns } from '../models/column-schema';
 import { RowComponent } from '../row/row.component';
+import { GridStore } from '../services/grid-store';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormlyModule } from '@ngx-formly/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'signal-grid',
   standalone: true,
-  imports: [RowComponent, ScrollingModule, ReactiveFormsModule, FormlyModule, CommonModule],
+  imports: [
+    RowComponent,
+    ScrollingModule,
+    ReactiveFormsModule,
+    FormlyModule,
+    MatButtonModule,
+    CommonModule
+  ],
   templateUrl: 'grid.component.html',
   styleUrls: ['grid.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [GridStore]
 })
 export class GridComponent {
   model = input.required<Model[]>();
-  columns = input.required<ColumnConfiguration[]>();
+  /**
+   * Columns: plain {@link ColumnSchema} objects and/or built
+   * `ColumnConfiguration`s. Schemas compile once per `columns` change (in the
+   * transform, before any row renders) and the resulting field set + validators
+   * are applied to the store.
+   */
+  columns = input.required<ColumnConfiguration[], (ColumnSchema | ColumnConfiguration)[]>({
+    transform: value => {
+      const compiled = compileColumns(value);
+      this.store.setColumns(compiled);
+      return compiled;
+    }
+  });
   includeRowExpander = input(false);
   modelChange = output<Model[]>();
   saveChanges = output<Model[]>();
@@ -29,49 +60,54 @@ export class GridComponent {
   editable = input(true);
   rowExpanderConfig = input<Type<unknown>>(null);
 
-  private readonly _columnWidths = signal<Record<string, number>>({});
-  private readonly _formGroup = signal(new FormGroup({}));
-  private readonly _isDirty = signal(false);
+  /** Per-grid edit state: viewport-scoped row forms + sparse identity-keyed edits. */
+  private readonly store = inject(GridStore);
 
-  get formGroup(): FormGroup {
-    return this._formGroup();
-  }
+  private readonly _columnWidths = signal<Record<string, number>>({});
+
+  hasUnsavedChanges = computed(() => this.store.hasEdits());
+  isFormValid = computed(() => {
+    if (!this.editable()) {
+      return true;
+    }
+    return this.store.invalidCount() === 0;
+  });
+
   isExpanded = signal<Record<number, boolean>>({});
 
-  hasUnsavedChanges = computed(() => this._isDirty());
-  isFormValid = computed(() => this._formGroup().valid);
-
-  private readonly _formValueChanges = toSignal(
-    toObservable(this._formGroup).pipe(
-      switchMap(group => group.valueChanges.pipe(map(() => group.getRawValue()))))
+  gridTemplateColumns = computed(
+    () => {
+      const parts: string[] = [];
+      for (const col of this.columns()) {
+        const w = this._columnWidths()[col.fieldName] ?? col.getWidth?.() ?? col.width ?? 120;
+        parts.push(`${w}px`);
+      }
+      if (this.showRowExpander()) {
+        parts.push(`${this.expanderColWidth()}px`);
+      }
+      return parts.join(' ');
+    },
+    { equal: (a, b) => a === b }
   );
 
-  gridTemplateColumns = computed(() => {
-    const cols = this.columns();
-    const widths = this._columnWidths();
-    const includeExpander = this.showRowExpander();
-    const parts: string[] = [];
-
-    for (const col of cols) {
-      const w = widths[col.fieldName] ?? col.getWidth?.() ?? col.width ?? 120;
-      parts.push(`${w}px`);
+  columnWidthMap = computed(
+    () => {
+      const map: Record<string, string> = {};
+      for (const col of this.columns()) {
+        const w = this._columnWidths()[col.fieldName] ?? col.getWidth?.() ?? col.width ?? 120;
+        map[col.fieldName] = `${w}px`;
+      }
+      return map;
+    },
+    {
+      equal: (a, b) => {
+        const aKeys = Object.keys(a);
+        return (
+          aKeys.length === Object.keys(b).length && aKeys.every(key => a[key] === b[key])
+        );
+      }
     }
-    if (includeExpander) {
-      parts.push(`${this.expanderColWidth()}px`);
-    }
-    return parts.join(' ');
-  }, { equal: (a, b) => a === b });
-
-  columnWidthMap = computed(() => {
-    const cols = this.columns();
-    const widths = this._columnWidths();
-    const result: Record<string, string> = {};
-    for (const col of cols) {
-      const w = widths[col.fieldName] ?? col.getWidth?.() ?? col.width ?? 120;
-      result[col.fieldName] = `${w}px`;
-    }
-    return result;
-  }, { equal: (a, b) => a === b });
+  );
 
   hasResizableColumns = computed(() => this.columns().some(c => c.resizable));
   expanderColWidth = computed(() => 40);
@@ -80,78 +116,23 @@ export class GridComponent {
   filterFormGroup = new FormGroup({});
   filterModel: Record<string, unknown> = {};
 
-  trackByIndex = (index: number) => index;
+  /** Stable across filter/sort — row keys derive from row object identity. */
+  trackByKey = (_index: number, row: Model) => this.store.keyFor(row);
 
   constructor() {
-    // Build the form group structure once when columns and model are first available.
-    let initialized = false;
-    effect(() => {
-      const columns = this.columns();
-      const rows = this.model();
-      if (initialized || columns.length === 0 || rows.length === 0) {
-        return;
-      }
-      initialized = true;
-      const formGroup = new FormGroup(
-        Object.fromEntries(
-          rows.map((row, index) => [
-            index.toString(),
-            new FormGroup(
-              Object.fromEntries(
-                columns.map(column => [column.fieldName, new FormControl(row[column.fieldName])])
-              )
-            )
-          ])
-        )
-      );
-      this._formGroup.set(formGroup);
-      this._isDirty.set(false);
-    });
-
-    // When the model changes (e.g. after filtering, saving, or resetting),
-    // rebuild the form group from scratch. This is faster than diffing 10,000+
-    // rows with deepEqual, which was the bottleneck causing 8s filter times.
-    // User edits are preserved by carrying over values from the previous form.
-    effect(() => {
-      const rows = this.model();
-      if (!initialized) {
-        return;
-      }
-      const columns = this.columns();
-      const prevFg = this._formGroup();
-
-      const formGroup = new FormGroup(
-        Object.fromEntries(
-          rows.map((row, index) => {
-            const key = String(index);
-            const prevRowGroup = prevFg.get(key) as FormGroup | null;
-            const prevValues = prevRowGroup ? prevRowGroup.getRawValue() : {};
-            return [
-              key,
-              new FormGroup(
-                Object.fromEntries(
-                  columns.map(column => [
-                    column.fieldName,
-                    // Preserve user edits if the row data hasn't changed
-                    new FormControl(prevValues[column.fieldName] ?? row[column.fieldName])
-                  ])
-                )
-              )
-            ];
-          })
-        )
-      );
-      this._formGroup.set(formGroup);
-    });
-
-    // When a cell value changes, mark the form as dirty and propagate to the model output.
-    effect(() => {
-      const value = this._formValueChanges();
-      if (!value) {
-        return;
-      }
-      this._isDirty.set(true);
-      this.modelChange.emit(Object.keys(value).map(key => value[key]));
+    // Debounced propagation of edits: the store bumps `changes` on every cell
+    // value change; after 250 ms of quiet we emit the merged model — but only
+    // when there is actually something to report. `hasEdits()`, `model()` and
+    // `mergedModel()` are read inside the timeout, i.e. untracked: always the
+    // current values. The first (initial) run finds no edits and emits nothing.
+    effect(onCleanup => {
+      this.store.changes();
+      const timer = setTimeout(() => {
+        if (this.store.hasEdits()) {
+          this.modelChange.emit(this.store.mergedModel(this.model()));
+        }
+      }, 250);
+      onCleanup(() => clearTimeout(timer));
     });
   }
 
@@ -167,7 +148,8 @@ export class GridComponent {
     event.stopPropagation();
 
     const startX = event.clientX;
-    const startWidth = this._columnWidths()[column.fieldName] ?? column.getWidth?.() ?? column.width ?? 120;
+    const startWidth =
+      this._columnWidths()[column.fieldName] ?? column.getWidth?.() ?? column.width ?? 120;
 
     const onMouseMove = (moveEvent: MouseEvent) => {
       const diff = moveEvent.clientX - startX;
@@ -188,36 +170,13 @@ export class GridComponent {
   }
 
   save(): void {
-    const fg = this._formGroup();
-    const rawValue = fg.getRawValue();
-    const modelData = Object.keys(rawValue)
-      .sort((a, b) => Number(a) - Number(b))
-      .map(key => rawValue[key]);
-    this.saveChanges.emit(modelData);
-    fg.markAsPristine();
-    this._isDirty.set(false);
+    const merged = this.store.mergedModel(this.model());
+    this.store.commit();
+    this.saveChanges.emit(merged);
   }
 
   reset(): void {
-    const fg = this._formGroup();
-    const rows = this.model();
-    // Rebuild form with original values — faster than patching 10k+ controls individually
-    const columns = this.columns();
-    const formGroup = new FormGroup(
-      Object.fromEntries(
-        rows.map((row, index) => [
-          String(index),
-          new FormGroup(
-            Object.fromEntries(
-              columns.map(column => [column.fieldName, new FormControl(row[column.fieldName])])
-            )
-          )
-        ])
-      )
-    );
-    fg.markAsPristine();
-    this._isDirty.set(false);
-    this._formGroup.set(formGroup);
+    this.store.reset();
     this.resetChanges.emit();
   }
 

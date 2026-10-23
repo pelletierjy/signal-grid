@@ -20,10 +20,11 @@ import { basicColumns, sampleRows } from '../docs-sample';
 
     <h2>2. Define the columns</h2>
     <p>
-      Columns come from <code>ColumnConfigurationBuilder</code>. <code>withField</code> names the
-      property of each row, <code>withType</code> picks the cell type, and <code>build</code> takes
-      the header text. Cells are read-only unless the column is <code>editable()</code>. More in
-      <a routerLink="/docs/columns">Columns</a>.
+      Columns are plain <code>ColumnSchema</code> objects or built with
+      <code>ColumnConfigurationBuilder</code> — the <code>[columns]</code> input accepts both, mixed
+      freely. <code>field</code> names the property of each row, <code>type</code> picks the cell
+      type from the registry. Cells are read-only unless the column is <code>editable</code>. More
+      in <a routerLink="/docs/columns">Columns</a>.
     </p>
     <app-code-block [code]="columnsSnippet" />
 
@@ -55,8 +56,9 @@ import { basicColumns, sampleRows } from '../docs-sample';
 
     <div class="note">
       The grid never changes the array you pass in. It works on a copy and reports edits through
-      <code>modelChange</code>. Rows are identified by their position, so replace the whole
-      <code>model</code> array to load new data.
+      <code>modelChange</code>. Rows are identified by <strong>object identity</strong>, so
+      filtering and sorting keep unsaved edits attached to the right rows — replace row objects
+      (not fields in place) to load new data.
     </div>
   `,
   styleUrls: ['../docs-page.scss'],
@@ -80,13 +82,17 @@ export class GettingStartedPageComponent {
 })
 export class AppModule {}`;
 
-  columnsSnippet = `import { ColumnConfigurationBuilder } from '@jypsolution/signal-grid';
+  columnsSnippet = `// plain schema objects…
+const columns = [
+  { field: 'id', header: 'ID', type: 'number' },
+  { field: 'name', header: 'Name', type: 'string', editable: true },
+  { field: 'isActive', header: 'Active', type: 'boolean', editable: true }
+];
 
-columns = [
-  new ColumnConfigurationBuilder().withField('id').withType('number').build('ID'),
-  new ColumnConfigurationBuilder().withField('name').withType('string').editable().build('Name'),
-  new ColumnConfigurationBuilder().withField('isActive').withType('boolean').editable().build('Active')
-];`;
+// …or the builder, mixed freely in one array
+import { ColumnConfigurationBuilder } from '@jypsolution/signal-grid';
+
+const extra = new ColumnConfigurationBuilder().withField('age').withType('number').editable().build('Age');`;
 
   templateSnippet = `<signal-grid
   [model]="rows"
@@ -104,7 +110,8 @@ columns = [
     {
       name: 'columns',
       kind: 'input, required',
-      description: 'An array of ColumnConfiguration, usually built with ColumnConfigurationBuilder.'
+      description:
+        'An array of ColumnSchema objects and/or ColumnConfigurations — usually built with ColumnConfigurationBuilder or written as literals.'
     },
     {
       name: 'includeRowExpander',
@@ -115,7 +122,7 @@ columns = [
       name: 'modelChange',
       kind: 'output',
       description:
-        'The full array of rows, emitted after each cell edit. It contains every field, including read-only ones.'
+        'The full array of rows with edits applied, emitted (debounced) while editing. It contains every field, including read-only ones.'
     }
   ];
 }

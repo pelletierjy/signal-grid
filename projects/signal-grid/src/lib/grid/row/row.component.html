@@ -10,39 +10,43 @@
   +
 </div>
 }
-@for (column of columns(); track $index) {
-  @if (isHeaderRow()) {
-    <div class="div-cell-container div-cell header">
-      <div>{{ column.columnHeaderText }}</div>
-      @if (column.resizable) {
-        <div
-          class="resize-handle"
-          (mousedown)="$event.preventDefault(); $event.stopPropagation(); resizeStart.emit({event: $event, column: column})">
-        </div>
-      }
-    </div>
+@if (isHeaderRow()) {
+@for (column of columns(); track column.fieldName + '-' + $index) {
+<div class="div-cell-container div-cell header">
+  <div>{{ column.columnHeaderText }}</div>
+  @if (column.resizable) {
+  <div
+    class="resize-handle"
+    (mousedown)="
+      $event.preventDefault();
+      $event.stopPropagation();
+      resizeStart.emit({ event: $event, column: column })
+    "></div>
   }
-  @else {
-    @if (formGroup().get(index().toString())) {
-      <div
-        lib-cell
-        class="div-cell"
-        [column]="column"
-        [columns]="columns()"
-        [formGroup]="formGroup()"
-        [index]="index()"></div>
-    }
-    <div
-      [ngClass]="{ 'value-indicator': true, changed: !formControl()?.pristine }"
-      title="row has pending changes">
-      *
-    </div>
-  }
+</div>
+}
+} @else {
+@let rowGroup = group();
+@if (rowGroup) {
+@for (column of columns(); track column.fieldName + '-' + $index) {
+<div class="div-cell">
+  <div
+    sgCell
+    [sgCellColumns]="columns()"
+    [sgCellColumn]="column"
+    [sgCellRowKey]="rowKey()"
+    [sgCellRowIndex]="index()"></div>
+</div>
+}
+@if (dirty()) {
+<div class="value-indicator changed" title="row has pending changes">*</div>
+}
 }
 @if (isRowExpanded() && rowExpanderConfig()) {
-  <div class="expander-row">
-    <ng-container
-      *ngComponentOutlet="rowExpanderConfig(); inputs: {rowData: rowData(), rowIndex: index()}">
-    </ng-container>
-  </div>
+<div class="expander-row">
+  <ng-container
+    *ngComponentOutlet="rowExpanderConfig(); inputs: { rowData: rowData(), rowIndex: index() }">
+  </ng-container>
+</div>
+}
 }

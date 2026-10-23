@@ -1,9 +1,14 @@
 import { ColumnConfiguration } from '../../../../projects/signal-grid/src/lib/grid/models/models';
+import { ColumnSchema } from '../../../../projects/signal-grid/src/lib/grid/models/column-schema';
 import { ColumnConfigurationBuilder } from '../../../../projects/signal-grid/src/lib/grid/services/column-configuration-builder';
 
 const statusColors = { true: '#d6eadf', false: '#f1d4d4' };
 
-export function buildDemoColumns(): ColumnConfiguration[] {
+/**
+ * Demo columns mixing both configuration styles: builder-produced
+ * `ColumnConfiguration`s and plain {@link ColumnSchema} object literals.
+ */
+export function buildDemoColumns(): (ColumnConfiguration | ColumnSchema)[] {
   const highlighted = new ColumnConfigurationBuilder()
     .withField('isRegistered')
     .withType('status-badge')
@@ -34,15 +39,9 @@ export function buildDemoColumns(): ColumnConfiguration[] {
       .withProps(cb => ({ options: [cb.value, 'Alpha', 'Beta'] }))
       .build('Name (select)'),
     highlighted,
-    new ColumnConfigurationBuilder()
-      .withField('id')
-      .width(80)
-      .build('No type'),
-    new ColumnConfigurationBuilder()
-      .withField('name')
-      .width(180)
-      .withType('does-not-exist')
-      .build('Unknown type'),
+    // Plain schema literals — same result as the builder above.
+    { field: 'id', header: 'No type', width: 80 },
+    { field: 'name', header: 'Unknown type', width: 180, type: 'does-not-exist' },
     new ColumnConfigurationBuilder()
       .withField('isActive')
       .width(100)
@@ -52,9 +51,8 @@ export function buildDemoColumns(): ColumnConfiguration[] {
     new ColumnConfigurationBuilder()
       .withField('name')
       .width(180)
-      .withType(cb =>
-        cb.formGroup.get([String(cb.index), 'isActive'])?.value ? 'status-badge' : 'string'
-      )
+      // cb.formGroup is the *row's* group: other fields of the same row.
+      .withType(cb => (cb.formGroup.get('isActive')?.value ? 'status-badge' : 'string'))
       .build('Per-row type'),
     new ColumnConfigurationBuilder()
       .withField('id')

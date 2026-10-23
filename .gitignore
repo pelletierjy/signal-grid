@@ -342,3 +342,10 @@ ASALocalRun/
 .nx/polygraph
 .nx/self-healing
 .nx/migrate-runs
+
+# Debug / tooling artifacts (browser automation sessions)
+.playwright-mcp/
+smoke.mjs
+smoke.png
+smoke-result.txt
+e2e-final.png

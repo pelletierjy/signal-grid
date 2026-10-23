@@ -7,3 +7,19 @@
   (filterSubmit)="onFilterSubmit($event)"
   (saveChanges)="onSave($event)"
   (resetChanges)="onReset()"></signal-grid>
+
+<div class="save-panel">
+  <div class="save-panel__head">
+    <strong>Last save</strong>
+    @if (lastSave()) {
+    <button mat-button color="accent" (click)="clearPersisted()">Clear persisted</button>
+    }
+  </div>
+  @if (lastSave()) {
+  <pre class="save-panel__body">{{ lastSave() }}</pre>
+  } @else {
+  <p class="save-panel__empty">
+    Nothing saved yet — edit a cell and press Save. Saves persist across reloads (localStorage).
+  </p>
+  }
+</div>
