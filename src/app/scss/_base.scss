@@ -3,7 +3,6 @@
 
 /*************************** Global ***************************/
 
-/* rem units based on 16px font size */
 html {
   background-color: var(--color-surface);
   color: $font-color;
@@ -27,6 +26,13 @@ p {
 
 a {
   color: $primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent;
+    text-decoration: underline;
+  }
 }
 
 .hidden-small {
