@@ -24,26 +24,26 @@
   transition: background-color 0.18s ease;
 
   &:hover:not(.header) {
-    background-color: var(--signal-grid-row-hover-bg, rgba(67, 56, 202, 0.04));
+    background-color: var(--signal-grid-row-hover-bg, rgba(67, 56, 202, 0.08));
   }
 
   &--alt {
     background-color: $alternate-color;
 
     &:hover:not(.header) {
-      background-color: var(--signal-grid-row-hover-bg, rgba(67, 56, 202, 0.06));
+      background-color: var(--signal-grid-row-hover-bg, rgba(67, 56, 202, 0.1));
     }
   }
 }
 
 .div-cell {
-  display: block;
+  display: flex;
+  align-items: center;
   width: auto;
   height: 100%;
   box-sizing: border-box;
   border-right: 1px solid $transparent-dark-grey;
   border-bottom: 1px solid $transparent-dark-grey;
-  align-items: center;
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 
   &:last-child {
