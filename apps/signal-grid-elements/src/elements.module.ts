@@ -1,10 +1,13 @@
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { createCustomElement } from '@angular/elements';
 import { GridModule } from '../../../projects/signal-grid/src/lib/grid/grid.module';
 import { GridComponent } from '../../../projects/signal-grid/src/lib/grid/grid/grid.component';
 
 @NgModule({
-  imports: [GridModule]
+  // BrowserModule supplies the root ErrorHandler/EventManager initializers the
+  // Angular bootstrap requires (NG0402 without it).
+  imports: [BrowserModule, GridModule]
 })
 export class ElementsModule implements DoBootstrap {
   constructor(private _injector: Injector) {}
