@@ -2,7 +2,7 @@
 
 ## Cell types
 
-A column's `type` is a plain string that the grid looks up in a registry of `name → component`. The grid ships four built-in types: `'number'`, `'string'`, `'boolean'` and `'default'` (an empty grey hatched cell, used when a column sets no `type`).
+A column's `type` is a plain string that the grid looks up in a registry of `name → component`. The grid ships five built-in types: `'number'`, `'string'`, `'boolean'`, `'actions'` (row action buttons that emit the grid's `cellAction` event) and `'default'` (an empty grey hatched cell, used when a column sets no `type`).
 
 Register your own types when importing the module. A module that calls `forChild` adds to the types registered above it and overrides a name that is already registered, only for the grids below that module.
 

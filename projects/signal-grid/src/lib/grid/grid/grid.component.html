@@ -34,6 +34,7 @@
 </div>
 }
 <div class="div-table" [style.--sg-grid-template-columns]="gridTemplateColumns()">
+  <div class="grid-header" #headerScroll>
   <div
     lib-row
     class="div-row"
@@ -43,7 +44,9 @@
     [columnWidths]="columnWidthMap()"
     [rowExpanderConfig]="rowExpanderConfig()"
     (resizeStart)="startResize($event)"></div>
+  </div>
   <cdk-virtual-scroll-viewport
+  #gridViewport
     [itemSize]="40"
     minBufferPx="400"
     maxBufferPx="800"

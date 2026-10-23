@@ -11,6 +11,12 @@
   font-family: $font-family;
 }
 
+.grid-header {
+  // The header lives outside the viewport (so it never scrolls vertically with
+  // the rows) and mirrors the viewport's horizontal scrollLeft (see GridComponent).
+  overflow: hidden;
+}
+
 .grid-viewport {
   height: $viewport-height;
 }

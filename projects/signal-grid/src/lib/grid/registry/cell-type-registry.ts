@@ -1,5 +1,6 @@
 import { inject, Injectable, Type } from '@angular/core';
 import { BaseCellComponent } from '../cell/base-cell.component';
+import { ActionsCellComponent } from '../cell/types/actions-cell.component';
 import { BooleanCellComponent } from '../cell/types/boolean-cell.component';
 import { DefaultCellComponent } from '../cell/types/default-cell.component';
 import { NumberCellComponent } from '../cell/types/number-cell.component';
@@ -10,6 +11,7 @@ export const BUILT_IN_CELL_TYPES: CellTypeConfig[] = [
   { name: 'number', component: NumberCellComponent },
   { name: 'string', component: StringCellComponent },
   { name: 'boolean', component: BooleanCellComponent },
+  { name: 'actions', component: ActionsCellComponent },
   { name: 'default', component: DefaultCellComponent }
 ];
 

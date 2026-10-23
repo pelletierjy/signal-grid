@@ -100,4 +100,13 @@ export abstract class BaseCellComponent implements ICellComponent {
     control.setValue(value);
     control.markAsDirty();
   }
+
+  /**
+   * Emits the grid's `cellAction` output. Used by the built-in `actions` cell;
+   * available to custom cells too. Actions ignore the read-only guard (a
+   * read-only row can still be opened or deleted).
+   */
+  dispatchAction(action: string): void {
+    this.store.dispatchAction({ action, rowKey: this.rowKey(), rowIndex: this.rowIndex() });
+  }
 }

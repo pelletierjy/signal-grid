@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "angular",
+  "buildCommand": "npx nx build signal-grid-site --configuration=production",
+  "outputDirectory": "dist/signal-grid-site/browser",
+  "installCommand": "npm install",
+  "engines": {
+    "node": "22.x"
+  }
+}

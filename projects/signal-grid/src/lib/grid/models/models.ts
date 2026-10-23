@@ -10,6 +10,26 @@ export enum SortOrder {
   Descending = -1
 }
 
+/** Payload of the grid's `cellAction` output (built-in `actions` cell, custom cells). */
+export interface CellAction {
+  /** The action id from `props.actions`. */
+  action: string;
+  /** Stable identity of the clicked row. */
+  rowKey: string;
+  /** Display index of the clicked row at click time. */
+  rowIndex: number;
+  /** The clicked row's data object, when its group is attached. */
+  row?: unknown;
+}
+
+/** One button rendered by the built-in `actions` cell (`props.actions`). */
+export interface CellActionDef {
+  id: string;
+  label: string;
+  /** `danger` renders the destructive variant (host theme color). */
+  variant?: 'default' | 'danger';
+}
+
 export enum InputRequiredType {
   Optional = 0,
   Required
