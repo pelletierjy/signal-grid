@@ -22,6 +22,7 @@ export * from './lib/grid/cell/types/actions-cell.component';
 export * from './lib/grid/models/models';
 export * from './lib/grid/models/model';
 export * from './lib/grid/models/column-schema';
+export * from './lib/grid/shared/expression';
 export * from './lib/grid/services/grid-store';
 export * from './lib/grid/services/column-configuration-builder';
 export * from './lib/grid/expander/default-row-expander.component';

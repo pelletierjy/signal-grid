@@ -1,5 +1,29 @@
 # Grid
 
+## Column schema (JSON-first)
+
+Columns can be plain object literals — a `ColumnSchema`, the grid's Formly-style field config.
+Every field is JSON-serializable, so a column set can live in a `.json` file or come from a
+server. Per-row dynamics use **expression strings** compiled once at schema-compile time:
+
+```ts
+const columns: ColumnSchema[] = [
+  { field: 'id', header: 'ID', type: 'number', width: 80 },
+  {
+    field: 'name',
+    header: 'Name',
+    type: 'string',
+    editable: true,
+    expressions: { editable: 'index % 2 === 0', type: "row.isActive ? 'badge' : 'string'" },
+  },
+];
+```
+
+Available names in expressions: `row`, `value`, `index`, `field`, `formGroup`. Keys: `type`,
+`editable`, `props`, `cssClass`, `visible`. Expressions compile via `new Function` (same trust
+model as `@ngx-formly`) — load expression-bearing schemas only from trusted sources. TypeScript
+callbacks remain available through `ColumnConfiguration` / `ColumnConfigurationBuilder`.
+
 ## Cell types
 
 A column's `type` is a plain string that the grid looks up in a registry of `name → component`. The grid ships five built-in types: `'number'`, `'string'`, `'boolean'`, `'actions'` (row action buttons that emit the grid's `cellAction` event) and `'default'` (an empty grey hatched cell, used when a column sets no `type`).

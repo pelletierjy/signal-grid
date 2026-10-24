@@ -31,12 +31,56 @@ import { sampleRows } from '../docs-sample';
     <h2>Schema objects</h2>
     <p>
       The <code>[columns]</code> input also accepts plain object literals — a
-      <code>ColumnSchema</code>, the grid's equivalent of a Formly field config. Schemas are plain
-      data (plus optional callbacks), so column sets can come from JSON or a server; the grid
-      compiles them to <code>ColumnConfiguration</code> once when the input changes. Builder output
-      and schema literals can be mixed freely in one array.
+      <code>ColumnSchema</code>, the grid's equivalent of a Formly field config. Schemas are
+      <strong>JSON-first</strong>: every field is JSON-serializable, so a column set can come from
+      JSON, a <code>.json</code> file, or a server response; the grid compiles it to a
+      <code>ColumnConfiguration</code> once when the input changes. Builder output and schema
+      literals can be mixed freely in one array.
     </p>
     <app-code-block [code]="schemaSnippet" />
+
+    <h3>Per-row dynamics with expressions</h3>
+    <p>
+      Anything that would need a callback goes in <code>expressions</code> as a
+      <strong>string</strong> — the same idea as Formly's expressions. Compiled once at schema
+      compile time, evaluated against a documented context:
+    </p>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>What it is</th>
+      </tr>
+      <tr>
+        <td><code>row</code></td>
+        <td>The row's current values (an object)</td>
+      </tr>
+      <tr>
+        <td><code>value</code></td>
+        <td>This cell's value</td>
+      </tr>
+      <tr>
+        <td><code>index</code></td>
+        <td>The row index</td>
+      </tr>
+      <tr>
+        <td><code>field</code></td>
+        <td>The column field name</td>
+      </tr>
+      <tr>
+        <td><code>formGroup</code></td>
+        <td>The row's form group — <code>formGroup.get('otherField').value</code></td>
+      </tr>
+    </table>
+    <p>
+      Keys: <code>type</code>, <code>editable</code>, <code>props</code>, <code>cssClass</code>,
+      <code>visible</code>. A broken expression logs one warning and falls back to the static value
+      instead of breaking the grid.
+    </p>
+    <div class="note">
+      Expressions are compiled with <code>new Function</code> — the same trust model as Formly:
+      column schemas are configuration-as-code. Only load expression-bearing schemas from sources
+      you trust (your repo, your backend), never from user input.
+    </div>
 
     <div class="note">
       A column's field is also the name of the form control behind it, so two columns on the same
@@ -169,6 +213,7 @@ status.cellCssClass = cb => (cb.value ? 'row-active' : '');`;
 
   schemaSnippet = `import { ColumnSchema } from '@jypsolution/signal-grid';
 
+// Pure JSON — no builder, no callbacks. Per-row dynamics go in \`expressions\`.
 const columns: ColumnSchema[] = [
   { field: 'id', header: 'ID', type: 'number', width: 80 },
   { field: 'name', header: 'Name', type: 'string', editable: true, width: 180 },
@@ -177,8 +222,15 @@ const columns: ColumnSchema[] = [
     header: 'Active',
     type: 'status-badge',
     props: { colors: { true: '#d6eadf' } },
-    cssClass: cb => (cb.value ? 'row-active' : ''),
-    wrappers: ['validation']
+    cssClass: 'row-active',
+    wrappers: ['validation'],
+    expressions: {
+      // Formly-style strings — evaluated against row, value, index, field, formGroup
+      editable: 'index % 2 === 0',
+      type: \"row.isActive ? 'status-badge' : 'default'\"
+    }
   }
-];`;
+];
+
+JSON.stringify(columns); // round-trips untouched — load it from a server or a .json file`;
 }

@@ -1,63 +1,55 @@
-import { ColumnConfiguration } from '../../../../projects/signal-grid/src/lib/grid/models/models';
 import { ColumnSchema } from '../../../../projects/signal-grid/src/lib/grid/models/column-schema';
-import { ColumnConfigurationBuilder } from '../../../../projects/signal-grid/src/lib/grid/services/column-configuration-builder';
 
 const statusColors = { true: '#d6eadf', false: '#f1d4d4' };
 
 /**
- * Demo columns mixing both configuration styles: builder-produced
- * `ColumnConfiguration`s and plain {@link ColumnSchema} object literals.
+ * 100% JSON-first demo: plain schema literals — no builder, no callbacks.
+ * Per-row dynamics use Formly-style `expressions` strings, so the whole array
+ * survives `JSON.stringify` / `JSON.parse` untouched (try it in the console:
+ * `JSON.stringify(buildDemoColumns())`).
  */
-export function buildDemoColumns(): (ColumnConfiguration | ColumnSchema)[] {
-  const highlighted = new ColumnConfigurationBuilder()
-    .withField('isRegistered')
-    .withType('status-badge')
-    .width(100)
-    .withProps({ colors: statusColors })
-    .build('Badge + css class');
-  highlighted.cellCssClass = () => 'demo-highlight';
-
+export function buildDemoColumns(): ColumnSchema[] {
   return [
-    new ColumnConfigurationBuilder()
-      .withField('isRegistered')
-      .width(100)
-      .withType('status-badge')
-      .withProps({ colors: statusColors })
-      .build('Status badge'),
-    new ColumnConfigurationBuilder()
-      .withField('age')
-      .width(100)
-      .editable()
-      .withType('select-cell')
-      .withProps({ options: [25, 50, 75, 100] })
-      .build('Age (select)'),
-    new ColumnConfigurationBuilder()
-      .withField('name')
-      .width(180)
-      .editable()
-      .withType('select-cell')
-      .withProps(cb => ({ options: [cb.value, 'Alpha', 'Beta'] }))
-      .build('Name (select)'),
-    highlighted,
-    // Plain schema literals — same result as the builder above.
+    { field: 'isRegistered', header: 'Status badge', width: 100, type: 'status-badge', props: { colors: statusColors } },
+    {
+      field: 'age',
+      header: 'Age (select)',
+      width: 100,
+      editable: true,
+      type: 'select-cell',
+      props: { options: [25, 50, 75, 100] }
+    },
+    {
+      field: 'name',
+      header: 'Name (select)',
+      width: 180,
+      editable: true,
+      type: 'select-cell',
+      expressions: { props: "({ options: [value, 'Alpha', 'Beta'] })" }
+    },
+    {
+      field: 'isRegistered',
+      header: 'Badge + css class',
+      width: 100,
+      type: 'status-badge',
+      props: { colors: statusColors },
+      cssClass: 'demo-highlight'
+    },
     { field: 'id', header: 'No type', width: 80 },
     { field: 'name', header: 'Unknown type', width: 180, type: 'does-not-exist' },
-    new ColumnConfigurationBuilder()
-      .withField('isActive')
-      .width(100)
-      .withType('toggle-cell')
-      .editable(cb => cb.index % 3 !== 0)
-      .build('Toggle'),
-    new ColumnConfigurationBuilder()
-      .withField('name')
-      .width(180)
-      // cb.formGroup is the *row's* group: other fields of the same row.
-      .withType(cb => (cb.formGroup.get('isActive')?.value ? 'status-badge' : 'string'))
-      .build('Per-row type'),
-    new ColumnConfigurationBuilder()
-      .withField('id')
-      .width(80)
-      .withType('eager-cell')
-      .build('Eager type')
+    {
+      field: 'isActive',
+      header: 'Toggle',
+      width: 100,
+      type: 'toggle-cell',
+      expressions: { editable: 'index % 3 !== 0' }
+    },
+    {
+      field: 'name',
+      header: 'Per-row type',
+      width: 180,
+      expressions: { type: "formGroup.get('isActive').value ? 'status-badge' : 'string'" }
+    },
+    { field: 'id', header: 'Eager type', width: 80, type: 'eager-cell' }
   ];
 }
