@@ -18,6 +18,7 @@ export * from './lib/grid/cell/types/number-cell.component';
 export * from './lib/grid/cell/types/string-cell.component';
 export * from './lib/grid/cell/types/boolean-cell.component';
 export * from './lib/grid/cell/types/default-cell.component';
+export * from './lib/grid/cell/types/actions-cell.component';
 export * from './lib/grid/models/models';
 export * from './lib/grid/models/model';
 export * from './lib/grid/models/column-schema';

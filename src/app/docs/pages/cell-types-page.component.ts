@@ -66,6 +66,20 @@ import { sampleRows } from '../docs-sample';
       <li>Wrappers run outermost-first in the order listed on the column.</li>
     </ul>
 
+    <h2>Actions</h2>
+    <p>
+      The built-in <code>actions</code> cell renders one button per entry of
+      <code>props.actions</code> and reports clicks through the grid's <code>cellAction</code>
+      output — how a non-Angular host (web-component consumer) gets row buttons like
+      Edit/Delete without registering a single Angular component.
+    </p>
+    <app-code-block [code]="actionsSnippet" />
+    <p>
+      The payload carries <code>action</code>, <code>rowKey</code>, <code>rowIndex</code> and
+      <code>row</code> — where <code>row</code> is the clicked row's data object. Actions ignore
+      the read-only guard: a read-only row can still be opened or deleted.
+    </p>
+
     <h2>Writing a cell type</h2>
     <p>Extend <code>BaseCellComponent</code>. It already has everything a cell needs:</p>
     <table>
@@ -159,6 +173,11 @@ export class CellTypesPageComponent {
     { name: 'string', editable: 'Text input', readOnly: 'Text' },
     { name: 'boolean', editable: 'Checkbox', readOnly: 'Disabled checkbox' },
     {
+      name: 'actions',
+      editable: 'Row action buttons from props.actions — emits cellAction on the grid',
+      readOnly: 'Same — actions ignore the read-only guard'
+    },
+    {
       name: 'default',
       editable: 'Used when a column has no type: an empty grey cell with hatch lines',
       readOnly: 'Same'
@@ -221,6 +240,19 @@ export class ValidationWrapperComponent extends BaseCellWrapper {}
 
 // column:
 { field: 'age', type: 'number', editable: true, wrappers: ['validation'] }`;
+
+  actionsSnippet = `// column schema
+{ field: 'id', type: 'actions', width: 170,
+  props: { actions: [
+    { id: 'edit', label: 'Edit' },
+    { id: 'delete', label: 'Delete', variant: 'danger' },
+  ] } }
+
+// host page (vanilla JS) — receives every button click
+grid.addEventListener('cellAction', (e) => {
+  const { action, row } = e.detail;
+  if (action === 'delete') confirmDelete(row);
+});`;
 
   toggleSnippet = `@Component({
   selector: 'app-toggle-cell',

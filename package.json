@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "buildVersion": "0000",
   "license": "MIT",
+  "packageManager": "pnpm@12.4.2",
   "repository": "https://github.com/pelletierjy/signal-grid",
   "scripts": {
     "ng": "ng",

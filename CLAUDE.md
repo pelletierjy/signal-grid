@@ -69,7 +69,7 @@ Prettier is enforced via husky pre-commit hooks. Key settings (from `.prettierrc
 - `projects/signal-grid/src/lib/grid/cell/cell-outlet.directive.ts` — `CellOutletDirective` (`[sgCell]`): resolves + creates cell/wrapper components
 - `projects/signal-grid/src/lib/grid/cell/base-cell.component.ts` — `BaseCellComponent`, the base class for every cell type
 - `projects/signal-grid/src/lib/grid/cell/wrappers/` — `BaseCellWrapper` + `WrapperHostDirective` (`[sgWrapperHost]`)
-- `projects/signal-grid/src/lib/grid/cell/types/` — built-in cell types (`number`, `string`, `boolean`, `default`)
+- `projects/signal-grid/src/lib/grid/cell/types/` — built-in cell types (`number`, `string`, `boolean`, `actions`, `default`)
 - `projects/signal-grid/src/lib/grid/services/column-configuration-builder.ts` — builder for columns
 - `projects/signal-grid/src/lib/grid/main-lib/subject-manager.ts` — legacy reactive state helper (unused by the grid/row/cell components)
 

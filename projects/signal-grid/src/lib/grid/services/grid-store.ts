@@ -1,7 +1,8 @@
 import { computed, Injectable, signal, Signal } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { Model } from '../models/model';
-import { ColumnConfiguration } from '../models/models';
+import { CellAction, ColumnConfiguration } from '../models/models';
 
 interface RowState {
   version: number;
@@ -46,6 +47,22 @@ export class GridStore {
   private readonly _state = signal(new Map<string, RowState>());
   private readonly _editsTick = signal(0);
   private readonly _changes = signal(0);
+  private readonly _actions = new Subject<CellAction>();
+
+  /**
+   * Action clicks from the built-in `actions` cell (and custom cells). The grid
+   * subscribes once and re-emits them through its `cellAction` output; the row
+   * object is attached here so consumers get the actual data row.
+   */
+  get actions(): Observable<CellAction> {
+    return this._actions.asObservable();
+  }
+
+  dispatchAction(action: CellAction): void {
+    const attached = this.attached.get(action.rowKey);
+    this._actions.next({ ...action, row: attached?.row ?? action.row });
+  }
+
 
   // ---- storage
   private readonly attached = new Map<string, AttachedRow>();

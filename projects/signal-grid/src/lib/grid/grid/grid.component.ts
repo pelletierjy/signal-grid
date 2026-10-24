@@ -3,19 +3,21 @@ import {
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   output,
   signal,
-  Type
+  Type,
+  viewChild
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Model } from '../models/model';
-import { ColumnConfiguration, SignalGridFilterFormConfig } from '../models/models';
+import { CellAction, ColumnConfiguration, SignalGridFilterFormConfig } from '../models/models';
 import { ColumnSchema, compileColumns } from '../models/column-schema';
 import { RowComponent } from '../row/row.component';
 import { GridStore } from '../services/grid-store';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ScrollingModule, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { FormlyModule } from '@ngx-formly/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -57,6 +59,8 @@ export class GridComponent {
   resetChanges = output<void>();
   filterFormConfig = input<SignalGridFilterFormConfig | null>(null);
   filterSubmit = output<Record<string, unknown>>();
+  /** Button clicks from the built-in `actions` cell (and custom cells). */
+  cellAction = output<CellAction>();
   editable = input(true);
   rowExpanderConfig = input<Type<unknown>>(null);
 
@@ -119,7 +123,28 @@ export class GridComponent {
   /** Stable across filter/sort — row keys derive from row object identity. */
   trackByKey = (_index: number, row: Model) => this.store.keyFor(row);
 
+  private readonly headerScroll = viewChild<ElementRef<HTMLDivElement>>('headerScroll');
+  // #gridViewport sits on a component element, so the ref is the directive
+  // instance itself (not an ElementRef) — reach the scroller via elementRef.
+  private readonly gridViewport = viewChild<CdkVirtualScrollViewport>('gridViewport');
+
   constructor() {
+    // The header sits outside the viewport (so it stays put vertically) but must
+    // follow its horizontal scroll so header/data columns never drift apart.
+    // scrollLeft is written straight to the DOM — no change detection needed.
+    effect(onCleanup => {
+      const viewport = this.gridViewport()?.elementRef?.nativeElement as HTMLElement | undefined;
+      const header = this.headerScroll()?.nativeElement;
+      if (!viewport || !header) {
+        return;
+      }
+      const sync = () => {
+        header.scrollLeft = viewport.scrollLeft;
+      };
+      viewport.addEventListener('scroll', sync, { passive: true });
+      sync();
+      onCleanup(() => viewport.removeEventListener('scroll', sync));
+    });
     // Debounced propagation of edits: the store bumps `changes` on every cell
     // value change; after 250 ms of quiet we emit the merged model — but only
     // when there is actually something to report. `hasEdits()`, `model()` and
@@ -133,6 +158,12 @@ export class GridComponent {
         }
       }, 250);
       onCleanup(() => clearTimeout(timer));
+    });
+
+    // Re-emit action clicks from cells (`actions` built-in) on the grid output.
+    effect(onCleanup => {
+      const sub = this.store.actions.subscribe(action => this.cellAction.emit(action));
+      onCleanup(() => sub.unsubscribe());
     });
   }
 

@@ -26,7 +26,7 @@ Key ideas explored here:
 | ⚡ **Signal reactivity**    | Fine-grained updates with Angular signals + `OnPush`                                    |
 | 🧮 **Virtual scrolling**    | Smooth large-dataset rendering via CDK virtual scroll                                   |
 | 📝 **Editable cells**       | Reactive forms per rendered row with debounced `modelChange` output                      |
-| 🧩 **Extensible types**     | Register custom cell components and wrappers; built-ins for `string`, `number`, `boolean`, `default` |
+| 🧩 **Extensible types**     | Register custom cell components and wrappers; built-ins for `string`, `number`, `boolean`, `actions`, `default` |
 | 🎨 **CSS variable theming** | Style entirely through custom properties; dark mode included                            |
 | 🏗️ **Fluent API**           | Configure columns with `ColumnConfigurationBuilder` or plain `ColumnSchema` objects      |
 | 🌐 **Web component**        | Export as `<signal-grid>` for non-Angular hosts                                         |
