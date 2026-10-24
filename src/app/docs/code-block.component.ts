@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-code-block',
-  standalone: false,
+  standalone: true,
   template: '<pre><code>{{ code() }}</code></pre>',
   styles: [
     `

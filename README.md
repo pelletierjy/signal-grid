@@ -8,6 +8,9 @@
 
 A lightweight, signal-powered data grid for Angular. Designed for large datasets, editable cells, and painless customization — with reactivity that just works.
 
+## Live Demo
+https://signal-grid-nine.vercel.app/
+
 ## Why SignalGrid?
 
 Most data grids lean on RxJS or manual change detection to stay in sync. SignalGrid asks a different question: _what if the entire grid — rows, cells, edits, and validation — reacted through Angular signals?_ The result is a grid that updates precisely when its data changes, without the ceremony of subjects or the overhead of Zone.js polling.

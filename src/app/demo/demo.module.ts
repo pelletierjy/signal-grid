@@ -9,14 +9,31 @@ import { DemoComponent } from './demo/demo.component';
 import { FooterModule } from '../footer/footer.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { GridComponent } from '../../../projects/signal-grid/src/lib/grid/grid/grid.component';
-import { DemoGridComponent } from './demo-grid/demo-grid.component';
 import { EagerCellComponent } from './cell-types/eager-cell.component';
 import { GridModule } from '../../../projects/signal-grid/src/lib/grid/grid.module';
+import { CodeBlockComponent } from '../docs/code-block.component';
+import { BasicDemoComponent } from './basic-demo/basic-demo.component';
+import { EditableDemoComponent } from './editable-demo/editable-demo.component';
+import { CustomTypesDemoComponent } from './custom-types-demo/custom-types-demo.component';
+import { PerRowDemoComponent } from './per-row-demo/per-row-demo.component';
+import { FilteringDemoComponent } from './filtering-demo/filtering-demo.component';
+import { RowExpanderDemoComponent } from './row-expander-demo/row-expander-demo.component';
+import { FromSupportDemoComponent } from './from-support-demo/from-support-demo.component';
 
 @NgModule({
-  declarations: [DemoComponent, DemoGridComponent],
+  declarations: [
+    DemoComponent,
+    BasicDemoComponent,
+    EditableDemoComponent,
+    CustomTypesDemoComponent,
+    PerRowDemoComponent,
+    FilteringDemoComponent,
+    RowExpanderDemoComponent,
+    FromSupportDemoComponent
+  ],
   imports: [
     AngularMaterialModule,
+    CodeBlockComponent,
     CommonModule,
     DemoRoutingModule,
     DocBlockModule,

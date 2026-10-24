@@ -1,30 +1,23 @@
 @use 'variables' as *;
 @forward 'variables';
 
-/*
-  breakpoints:
-  small: <720px (45rem)
-  medium: 720px - 1279px
-  large: 1280px (80rem)
-
-  minimum supported size: 375px (23.4375rem)
-*/
 .layout {
   display: grid;
   grid-row-gap: 0;
   grid-template-columns: auto;
-  grid-template-rows: 4rem auto;
+  grid-template-rows: 3.5rem auto;
   height: 100vh;
   background-color: var(--color-surface);
 
   main {
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 3.5rem);
     overflow: hidden;
 
     .scrollable {
       overflow: auto;
-      height: calc(100vh - 4rem);
+      height: calc(100vh - 3.5rem);
       margin: 0;
+      background-color: var(--color-surface-alt);
     }
 
     .page {
@@ -38,8 +31,8 @@
 
   footer {
     align-items: center;
-    background-color: $surface-alt;
-    border-top: $layout-border;
+    background-color: var(--color-surface-elevated);
+    border-top: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
     justify-content: center;

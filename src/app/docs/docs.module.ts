@@ -5,6 +5,7 @@ import { GridComponent } from '../../../projects/signal-grid/src/lib/grid/grid/g
 import { FooterModule } from '../footer/footer.module';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { CodeBlockComponent } from './code-block.component';
+
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
 import { CellTypesPageComponent } from './pages/cell-types-page.component';
@@ -16,7 +17,6 @@ import { WebComponentPageComponent } from './pages/web-component-page.component'
 @NgModule({
   declarations: [
     DocsComponent,
-    CodeBlockComponent,
     GettingStartedPageComponent,
     ColumnsPageComponent,
     CellTypesPageComponent,
@@ -25,6 +25,7 @@ import { WebComponentPageComponent } from './pages/web-component-page.component'
   ],
   imports: [
     AngularMaterialModule,
+    CodeBlockComponent,
     CommonModule,
     DocsRoutingModule,
     FooterModule,

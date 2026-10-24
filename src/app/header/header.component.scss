@@ -4,14 +4,16 @@ header {
   align-items: center;
   display: grid;
   grid-template-columns: auto 1fr;
-  height: 4rem;
+  height: 3.5rem;
   width: 100%;
   z-index: 100;
-  border: 0;
-  border-bottom: 1px solid $border-color;
   position: fixed;
-  background-color: var(--color-surface);
-  box-shadow: $shadow-sm;
+  top: 0;
+  left: 0;
+  background-color: var(--color-surface-elevated);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
   a {
     text-decoration: none;
@@ -19,6 +21,18 @@ header {
 
   .home-link {
     padding-left: 1.5rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $font-color;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '◆';
+      color: $accent;
+      font-size: 1rem;
+    }
   }
 
   .main-logo {
@@ -28,34 +42,39 @@ header {
   .nav {
     justify-self: end;
     padding-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .theme-toggle {
     color: $font-color-light;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: $accent;
+      transform: rotate(15deg);
+    }
   }
 
   .menu-link {
     color: $font-color-light;
-    font-size: 1rem;
-    border-radius: $radius-sm;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-md);
     transition: color 0.2s ease, background-color 0.2s ease;
+    padding: 0.35rem 0.85rem;
+    font-weight: 500;
 
     &:hover {
-      background-color: $primary-light;
+      background-color: var(--color-primary-light);
       color: $primary;
-    }
-
-    &:not(:last-of-type) {
-      margin-right: 1rem;
+      text-decoration: none;
     }
 
     &.active {
       color: $primary;
+      background-color: var(--color-primary-light);
       font-weight: 600;
-
-      &:hover {
-        background-color: $primary-light;
-      }
     }
   }
 
@@ -65,7 +84,7 @@ header {
     }
 
     .menu-link {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 }
